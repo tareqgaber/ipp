@@ -1,15 +1,9 @@
-import { Moon, Sun, Monitor } from 'lucide-react';
-import { useTheme } from '../contexts/ThemeContext';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from './ui/select';
-import { Button } from './ui/button';
+import { Moon, Sun, Monitor } from "lucide-react";
+import { useTheme } from "../contexts/ThemeContext";
+import { Select } from "./base/select/select";
+import { Button } from "./base/buttons/button";
 
-type ThemeSwitcherVariant = 'select' | 'toggle' | 'buttons';
+type ThemeSwitcherVariant = "select" | "toggle" | "buttons";
 
 interface ThemeSwitcherProps {
   /**
@@ -22,85 +16,68 @@ interface ThemeSwitcherProps {
   variant?: ThemeSwitcherVariant;
 }
 
-export function ThemeSwitcher({ variant = 'toggle' }: ThemeSwitcherProps) {
+export function ThemeSwitcher({ variant = "toggle" }: ThemeSwitcherProps) {
   const { theme, setTheme, actualTheme } = useTheme();
 
-  if (variant === 'select') {
+  if (variant === "select") {
+    const items = [
+      { id: "light", label: "Light", icon: Sun },
+      { id: "dark", label: "Dark", icon: Moon },
+      { id: "system", label: "System", icon: Monitor },
+    ];
+
     return (
-      <Select value={theme} onValueChange={(value) => setTheme(value as any)}>
-        <SelectTrigger className="w-[140px]">
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="light">
-            <div className="flex items-center gap-2">
-              <Sun className="h-4 w-4" />
-              Light
-            </div>
-          </SelectItem>
-          <SelectItem value="dark">
-            <div className="flex items-center gap-2">
-              <Moon className="h-4 w-4" />
-              Dark
-            </div>
-          </SelectItem>
-          <SelectItem value="system">
-            <div className="flex items-center gap-2">
-              <Monitor className="h-4 w-4" />
-              System
-            </div>
-          </SelectItem>
-        </SelectContent>
+      <Select
+        selectedKey={theme}
+        onSelectionChange={(value) => setTheme(value as any)}
+        items={items}
+        className="w-[140px]"
+      >
+        {(item) => <Select.Item id={item.id}>{item.label}</Select.Item>}
       </Select>
     );
   }
 
-  if (variant === 'buttons') {
+  if (variant === "buttons") {
     return (
       <div className="flex items-center gap-1 border rounded-lg p-1">
         <Button
-          variant={theme === 'light' ? 'secondary' : 'ghost'}
+          color={theme === "light" ? "secondary" : "tertiary"}
           size="sm"
-          onClick={() => setTheme('light')}
-          className="px-3"
-        >
-          <Sun className="h-4 w-4" />
-        </Button>
+          onClick={() => setTheme("light")}
+          iconLeading={Sun}
+        />
         <Button
-          variant={theme === 'dark' ? 'secondary' : 'ghost'}
+          color={theme === "dark" ? "secondary" : "tertiary"}
           size="sm"
-          onClick={() => setTheme('dark')}
-          className="px-3"
-        >
-          <Moon className="h-4 w-4" />
-        </Button>
+          onClick={() => setTheme("dark")}
+          iconLeading={Moon}
+        />
         <Button
-          variant={theme === 'system' ? 'secondary' : 'ghost'}
+          color={theme === "system" ? "secondary" : "tertiary"}
           size="sm"
-          onClick={() => setTheme('system')}
-          className="px-3"
-        >
-          <Monitor className="h-4 w-4" />
-        </Button>
+          onClick={() => setTheme("system")}
+          iconLeading={Monitor}
+        />
       </div>
     );
   }
 
   // Default: toggle variant
   const handleToggle = () => {
-    if (theme === 'system') {
+    if (theme === "system") {
       // If system, switch to opposite of current actual theme
-      setTheme(actualTheme === 'dark' ? 'light' : 'dark');
+      setTheme(actualTheme === "dark" ? "light" : "dark");
     } else {
       // Toggle between light and dark
-      setTheme(theme === 'light' ? 'dark' : 'light');
+      setTheme(theme === "light" ? "dark" : "light");
     }
   };
 
   return (
     <Button
-      variant="ghost"
-      size="icon"
+      color="tertiary"
+      size="sm"
       onClick={handleToggle}
       className="relative"
       aria-label="Toggle theme"

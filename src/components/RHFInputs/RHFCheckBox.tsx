@@ -30,7 +30,7 @@ export const RHFCheckbox = ({
           label={label}
           hint={hint}
           size={size}
-          checked={field.value}
+          isSelected={field.value}
           onChange={field.onChange}
           className={className}
         />
