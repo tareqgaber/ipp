@@ -1,12 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "react-phone-number-input/style.css";
-@custom-variant dark (&:is(.dark *));
+@import "./styles/theme.css";
 
-@import "tailwindcss";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark-mode *));
 
 :root {
   --background: oklch(1 0 0);

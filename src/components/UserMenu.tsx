@@ -9,7 +9,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import avatar from "@/assets/images/avatar.jpg"
+import avatar from "@/assets/images/avatar.jpg";
 
 export function UserMenu() {
   return (

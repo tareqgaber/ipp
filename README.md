@@ -1,73 +1,87 @@
-# React + TypeScript + Vite
+# React TypeScript Starter with Untitled UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A production-ready React + TypeScript + Vite starter template with authentication, routing, state management, and Untitled UI components.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ⚡ **Vite** - Fast build tool and dev server
+- ⚛️ **React 19** - Latest React with modern features
+- 🎨 **Untitled UI** - Beautiful, accessible UI components built on React Aria
+- 🔐 **Authentication** - Complete auth flow with JWT token management
+- 🌍 **i18n** - Multi-language support (English & Arabic) with RTL
+- 🎯 **TypeScript** - Full type safety
+- 🔄 **Redux Toolkit** - State management
+- 🔌 **React Query** - Server state management
+- 🛣️ **React Router 7** - Client-side routing with protected routes
+- 🌓 **Dark Mode** - Built-in theme switching
+- 📱 **Responsive** - Mobile-first design
 
-## React Compiler
+## Project Structure
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```
+src/
+├── api/              # API configuration and queries
+│   ├── axios/        # Axios setup with interceptors
+│   ├── queries/      # React Query hooks
+│   └── types/        # API type definitions
+├── components/       # Reusable components
+│   ├── layout/       # Layout components (Auth, Admin)
+│   └── RHFInputs/    # React Hook Form input components
+├── hooks/            # Custom React hooks
+├── lib/              # Utilities and configurations
+│   ├── auth/         # Authentication utilities
+│   └── i18n/         # Internationalization setup
+├── pages/            # Page components
+│   ├── auth/         # Login page
+│   └── admin/        # Dashboard page
+├── providers/        # Context providers
+├── router/           # Routing configuration
+├── store/            # Redux store
+└── styles/           # Global styles and theme
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Install dependencies
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### Run development server
+
+```bash
+npm run dev
+```
+
+### Build for production
+
+```bash
+npm run build
+```
+
+## Key Technologies
+
+- **UI Framework**: Untitled UI with React Aria Components
+- **Styling**: Tailwind CSS v4
+- **Forms**: React Hook Form + Zod validation
+- **HTTP Client**: Axios with interceptors
+- **Animations**: Framer Motion
+
+## Configuration
+
+### Environment Variables
+
+Create a `.env` file with:
+
+```
+VITE_API_BASE_URL=your_api_url
+```
+
+### Routes
+
+- `/login` - Login page
+- `/admin` - Dashboard (protected)
+
+See [AUTH_GUIDE.md](./AUTH_GUIDE.md) for authentication details and [TRANSLATION_IMPLEMENTATION.md](./TRANSLATION_IMPLEMENTATION.md) for i18n usage.

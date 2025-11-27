@@ -26,7 +26,11 @@ export function DashboardPage() {
         <h1 className="text-3xl font-bold">Dashboard</h1>
         <div className="flex items-center gap-2">
           <motion.div whileTap={{ scale: 0.95 }}>
-            <Button onClick={() => logout.mutate()} variant="outlined" color="gray">
+            <Button
+              onClick={() => logout.mutate()}
+              variant="outlined"
+              color="gray"
+            >
               Logout
             </Button>
           </motion.div>

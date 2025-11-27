@@ -13,13 +13,8 @@ const loginSchema = z.object({
   password: z.string().min(1, "Password is required"),
 });
 
-
-
-
-
-
 const LoginForm = () => {
-  const {mutate, isPending} = useLogin()
+  const { mutate, isPending } = useLogin();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -28,8 +23,8 @@ const LoginForm = () => {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof loginSchema>) =>{
-    mutate(data)
+  const onSubmit = (data: z.infer<typeof loginSchema>) => {
+    mutate(data);
   };
 
   return (
@@ -65,9 +60,17 @@ const LoginForm = () => {
               Forgot Password?{" "}
             </Link>
           </div>
-          <Button disabled={isPending}  type="submit" className=" py-2 rounded-md mt-2 bg-[#1B3F82]">
+          <Button
+            disabled={isPending}
+            type="submit"
+            className=" py-2 rounded-md mt-2 bg-[#1B3F82]"
+          >
             {" "}
-          { isPending ? <LoadingSpinner size="sm" className="  border-wight" /> :   " Log In"}{" "}
+            {isPending ? (
+              <LoadingSpinner size="sm" className="  border-wight" />
+            ) : (
+              " Log In"
+            )}{" "}
           </Button>
 
           <div className=" flex w-full justify-center items-center gap-2 ">
