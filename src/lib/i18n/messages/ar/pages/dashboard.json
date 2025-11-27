@@ -1,0 +1,14 @@
+{
+  "title": "لوحة التحكم",
+  "welcome": "مرحباً بعودتك!",
+  "overview": "نظرة عامة",
+  "stats": {
+    "totalUsers": "إجمالي المستخدمين",
+    "totalOrders": "إجمالي الطلبات",
+    "revenue": "الإيرادات",
+    "growth": "النمو"
+  },
+  "recentActivity": "النشاط الأخير",
+  "quickActions": "إجراءات سريعة",
+  "viewAll": "عرض الكل"
+}

@@ -1,0 +1,54 @@
+{
+  "title": "فرصة جديدة",
+  "fields": {
+    "opportunityTitle": {
+      "label": "عنوان الفرصة",
+      "placeholder": "أدخل عنوان الفرصة"
+    },
+    "shortDescription": {
+      "label": "وصف مختصر",
+      "placeholder": "أدخل وصف مختصر"
+    },
+    "spend": {
+      "label": "الإنفاق (ريال سعودي)",
+      "placeholder": "أدخل الإنفاق (ريال سعودي)"
+    },
+    "quantity": {
+      "label": "الكمية (الوحدات)",
+      "placeholder": "أدخل الكمية (الوحدات)"
+    },
+    "localSuppliers": {
+      "label": "الموردون المحليون",
+      "placeholder": "أدخل عدد الموردين المحليين"
+    },
+    "globalSuppliers": {
+      "label": "الموردون العالميون",
+      "placeholder": "أدخل عدد الموردين العالميين"
+    },
+    "dateRange": {
+      "label": "النطاق الزمني",
+      "placeholder": "حدد النطاق الزمني"
+    },
+    "image": {
+      "label": "الصورة"
+    },
+    "localizationTarget": {
+      "label": "هدف التوطين",
+      "placeholder": "أدخل هدف التوطين"
+    }
+  },
+  "validation": {
+    "opportunityTitleRequired": "عنوان الفرصة مطلوب",
+    "opportunityTitleMaxLength": "يجب ألا يتجاوز عنوان الفرصة 50 حرفًا",
+    "shortDescriptionMaxLength": "يجب ألا يتجاوز الوصف المختصر 500 حرف",
+    "spendPositive": "يجب أن يكون الإنفاق رقمًا موجبًا",
+    "quantityInteger": "يجب أن تكون الكمية عددًا صحيحًا",
+    "quantityPositive": "يجب أن تكون الكمية رقمًا موجبًا",
+    "localSuppliersInteger": "يجب أن يكون عدد الموردين المحليين عددًا صحيحًا",
+    "localSuppliersPositive": "يجب أن يكون عدد الموردين المحليين رقمًا موجبًا",
+    "globalSuppliersInteger": "يجب أن يكون عدد الموردين العالميين عددًا صحيحًا",
+    "globalSuppliersPositive": "يجب أن يكون عدد الموردين العالميين رقمًا موجبًا",
+    "localizationTargetRequired": "هدف التوطين مطلوب",
+    "localizationTargetRange": "يجب أن يكون الهدف بين 1 و 100"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "dashboard": "Dashboard",
+  "analytics": "Analytics",
+  "users": "Users",
+  "products": "Products",
+  "orders": "Orders",
+  "settings": "Settings",
+  "reports": "Reports",
+  "notifications": "Notifications",
+  "help": "Help",
+  "support": "Support",
+  "profile": "Profile",
+  "logout": "Logout"
+}

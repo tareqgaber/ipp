@@ -1,0 +1,16 @@
+{
+  "loading": "Loading opportunity details...",
+  "error": "Error",
+  "errorMessage": "Failed to load opportunity",
+  "notFound": "Opportunity not found",
+  "backToOpportunities": "Back to Opportunities",
+  "applyNow": "Apply Now",
+  "demandTitle": "Forecasted SEC Demand (2024 - 2030)",
+  "demandDisclaimer": "* Demand numbers provided here are estimated and subject to change",
+  "spend": "Spend (SAR)",
+  "quantity": "Quantity (Units)",
+  "supplierBaseTitle": "SEC Current Supplier Base",
+  "local": "Local",
+  "global": "Global",
+  "localizationAreasTitle": "Localization Opportunity Areas"
+}

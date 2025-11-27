@@ -1,0 +1,15 @@
+{
+  "generic": "An error occurred. Please try again.",
+  "network": "Network error. Please check your connection.",
+  "unauthorized": "Unauthorized. Please login again.",
+  "forbidden": "You don't have permission to access this resource.",
+  "notFound": "Resource not found.",
+  "serverError": "Server error. Please try again later.",
+  "validationError": "Please check the form and try again.",
+  "sessionExpired": "Your session has expired. Please login again.",
+  "somethingWentWrong": "Something went wrong",
+  "tryAgain": "Please try again",
+  "queryError": "An error occurred while fetching data",
+  "mutationError": "An error occurred",
+  "mutationSuccess": "Operation completed successfully"
+}

@@ -1,0 +1,357 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "react-phone-number-input/style.css";
+@custom-variant dark (&:is(.dark *));
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.1450 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.1450 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.1450 0 0);
+  --primary: oklch(0.4110 0.1322 261.5146);
+  --primary-foreground: oklch(0.9850 0 0);
+  --secondary: oklch(0.9700 0 0);
+  --secondary-foreground: oklch(0.2050 0 0);
+  --muted: oklch(0.9700 0 0);
+  --muted-foreground: oklch(0.5560 0 0);
+  --accent: oklch(0.9700 0 0);
+  --accent-foreground: oklch(0.2050 0 0);
+  --destructive: oklch(0.5770 0.2450 27.3250);
+  --destructive-foreground: oklch(1 0 0);
+  --border: #D5D6DD;
+  --input: oklch(0.9220 0 0);
+  --ring: oklch(0.7080 0 0);
+  --chart-1: oklch(0.8100 0.1000 252);
+  --chart-2: oklch(0.6200 0.1900 260);
+  --chart-3: oklch(0.5500 0.2200 263);
+  --chart-4: oklch(0.4900 0.2200 264);
+  --chart-5: oklch(0.4200 0.1800 266);
+  --sidebar: oklch(0.9850 0 0);
+  --sidebar-foreground: oklch(0.1450 0 0);
+  --sidebar-primary: oklch(0.2050 0 0);
+  --sidebar-primary-foreground: oklch(0.9850 0 0);
+  --sidebar-accent: oklch(0.9700 0 0);
+  --sidebar-accent-foreground: oklch(0.2050 0 0);
+  --sidebar-border: oklch(0.9220 0 0);
+  --sidebar-ring: oklch(0.7080 0 0);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --radius: 0.625rem;
+  --shadow-x: 0;
+  --shadow-y: 1px;
+  --shadow-blur: 3px;
+  --shadow-spread: 0px;
+  --shadow-opacity: 0.1;
+  --shadow-color: oklch(0 0 0);
+  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0 1px 2px 0 rgba(10, 13, 18, 0.05);
+  ;
+  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+  --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10);
+  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
+  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
+  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+}
+
+.dark {
+  --background: oklch(0.1450 0 0);
+  --foreground: oklch(0.9850 0 0);
+  --card: oklch(0.2050 0 0);
+  --card-foreground: oklch(0.9850 0 0);
+  --popover: oklch(0.2690 0 0);
+  --popover-foreground: oklch(0.9850 0 0);
+  --primary: oklch(0.9220 0 0);
+  --primary-foreground: oklch(0.2050 0 0);
+  --secondary: oklch(0.2690 0 0);
+  --secondary-foreground: oklch(0.9850 0 0);
+  --muted: oklch(0.2690 0 0);
+  --muted-foreground: oklch(0.7080 0 0);
+  --accent: oklch(0.3710 0 0);
+  --accent-foreground: oklch(0.9850 0 0);
+  --destructive: oklch(0.7040 0.1910 22.2160);
+  --destructive-foreground: oklch(0.9850 0 0);
+  --border: oklch(0.2750 0 0);
+  --input: oklch(0.3250 0 0);
+  --ring: oklch(0.5560 0 0);
+  --chart-1: oklch(0.8100 0.1000 252);
+  --chart-2: oklch(0.6200 0.1900 260);
+  --chart-3: oklch(0.5500 0.2200 263);
+  --chart-4: oklch(0.4900 0.2200 264);
+  --chart-5: oklch(0.4200 0.1800 266);
+  --sidebar: oklch(0.2050 0 0);
+  --sidebar-foreground: oklch(0.9850 0 0);
+  --sidebar-primary: oklch(0.4880 0.2430 264.3760);
+  --sidebar-primary-foreground: oklch(0.9850 0 0);
+  --sidebar-accent: oklch(0.2690 0 0);
+  --sidebar-accent-foreground: oklch(0.9850 0 0);
+  --sidebar-border: oklch(0.2750 0 0);
+  --sidebar-ring: oklch(0.4390 0 0);
+}
+
+@theme {
+  --color-primary-25: #FAFBFD;
+  --color-primary-50: #F4F7FA;
+  --color-primary-100: #E8ECF4;
+  --color-primary-200: #C0CEE0;
+  --color-primary-300: #97AACC;
+  --color-primary-400: #6F88B9;
+  --color-primary-500: #4767A5;
+  --color-primary-600: #1E4691;
+  --color-primary-700: #183F82;
+  --color-primary-800: #183874;
+  --color-primary-900: #153166;
+  --color-primary-950: #122A57;
+
+  /* === GRAY === */
+  --color-gray-25: #FCFCFC;
+  --color-gray-50: #F9FAFA;
+  --color-gray-100: #ECEDEF;
+  --color-gray-200: #D5D6DD;
+  --color-gray-300: #BBBEC8;
+  --color-gray-400: #9197A6;
+  --color-gray-500: #777E91;
+  --color-gray-600: #606875;
+  --color-gray-700: #4A4E5A;
+  --color-gray-800: #33363E;
+  --color-gray-900: #1D1E23;
+  --color-gray-950: #060607;
+
+  /* === ORANGE === */
+  --color-orange-25: #FFF9F4;
+  --color-orange-50: #FFE4EB;
+  --color-orange-100: #FDE0C8;
+  --color-orange-200: #FBCBA4;
+  --color-orange-300: #FAB781;
+  --color-orange-400: #F8A35D;
+  --color-orange-500: #F78F3A;
+  --color-orange-600: #D47B32;
+  --color-orange-700: #B2672A;
+  --color-orange-800: #8F5322;
+  --color-orange-900: #5E3616;
+  --color-orange-950: #4A2B11;
+
+  /* === BLUE === */
+  --color-blue-25: #F8FCFE;
+  --color-blue-50: #F2F9FD;
+  --color-blue-100: #E5F3FB;
+  --color-blue-200: #B8DCF5;
+  --color-blue-300: #8AC6EE;
+  --color-blue-400: #5CB0E8;
+  --color-blue-500: #2E99E1;
+  --color-blue-600: #0083DB;
+  --color-blue-700: #006E8B;
+  --color-blue-800: #005995;
+  --color-blue-900: #004472;
+  --color-blue-950: #002F4F;
+
+  /* === RED === */
+  --color-red-25: #FBF4F3;
+  --color-red-50: #F7E9E8;
+  --color-red-100: #EAC1BE;
+  --color-red-200: #DDA9A5;
+  --color-red-300: #CF7268;
+  --color-red-400: #C24842;
+  --color-red-500: #B42318;
+  --color-red-600: #A22016;
+  --color-red-700: #901C13;
+  --color-red-800: #7E1911;
+  --color-red-900: #6C150E;
+  --color-red-950: #5A120C;
+
+  /* === YELLOW === */
+  --color-yellow-25: #FFFDF3;
+  --color-yellow-50: #FFFAE7;
+  --color-yellow-100: #FFF0BB;
+  --color-yellow-200: #FFE68F;
+  --color-yellow-300: #FFD338;
+  --color-yellow-400: #FFD338;
+  --color-yellow-500: #FFC90C;
+  --color-yellow-600: #D6A90A;
+  --color-yellow-700: #AD9808;
+  --color-yellow-800: #856906;
+  --color-yellow-900: #5C4804;
+  --color-yellow-950: #332802;
+
+  /* === GREEN === */
+  --color-green-25: #F6FEF9;
+  --color-green-50: #F2FBF6;
+  --color-green-100: #B9D9CB;
+  --color-green-200: #8CC0AA;
+  --color-green-300: #60A789;
+  --color-green-400: #338F68;
+  --color-green-500: #076747;
+  --color-green-600: #05683E;
+  --color-green-700: #055A36;
+  --color-green-800: #044C2D;
+  --color-green-900: #033D25;
+  --color-green-950: #022F1C;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--color-primary-600);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  [dir="rtl"] .directional-icon {
+    transform: rotateY(-180deg);
+  }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-gray-700;
+  }
+
+  [dir="rtl"] .directional-icon {
+    transform: rotateY(-180deg);
+  }
+}
+
+
+
+
+
+
+/* General layout */
+.phone-input .PhoneInput {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.phone-input .PhoneInputCountry {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-right: 0.25rem;
+  position: relative;
+}
+
+.phone-input .PhoneInputCountrySelect {
+  border-radius: 9999px;
+  /* round */
+  overflow: hidden;
+  background: transparent;
+  outline: none;
+  border: none;
+}
+
+.phone-input .PhoneInputCountryIcon {
+  display: flex;
+  align-items: center;
+  border-radius: 9999px;
+
+}
+
+.phone-input .PhoneInputCountryIconImg {
+  border-radius: 9999px;
+  width: 26px;
+  height: 26px;
+  object-fit: cover;
+}
+
+/* Country code (like +20) */
+.phone-input .PhoneInputCountrySelectArrow {
+  display: block;
+  /* hide the default arrow */
+}
+
+.phone-input .PhoneInputCountrySelect::after {
+  content: none;
+}
+
+/* Input field (Shadcn Input styling) */
+.phone-input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.95rem;
+  color: #111827;
+}
+
+.phone-input input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Dropdown icon alignment */
+.phone-input .lucide-chevron-down {
+  margin-left: auto;
+  flex-shrink: 0;
+}

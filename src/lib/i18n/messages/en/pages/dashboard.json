@@ -1,0 +1,14 @@
+{
+  "title": "Dashboard",
+  "welcome": "Welcome back!",
+  "overview": "Overview",
+  "stats": {
+    "totalUsers": "Total Users",
+    "totalOrders": "Total Orders",
+    "revenue": "Revenue",
+    "growth": "Growth"
+  },
+  "recentActivity": "Recent Activity",
+  "quickActions": "Quick Actions",
+  "viewAll": "View All"
+}
