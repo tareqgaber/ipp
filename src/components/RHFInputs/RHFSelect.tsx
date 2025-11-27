@@ -1,100 +1,51 @@
-import {
-  Controller,
-  useFormContext,
-  type FieldValues,
-  type Path,
-} from "react-hook-form";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import clsx from "clsx";
-import { Label } from "@/components/ui/label";
+import { Controller, useFormContext } from "react-hook-form";
+import { Select, type SelectItemType } from "@/components/base/select/select";
+import type { ReactNode } from "react";
 
-interface Option {
-  label: string;
-  value: string;
-}
-
-interface RHFSelectProps<T extends FieldValues> {
-  name: Path<T>;
+interface RHFSelectProps {
+  name: string;
   label?: string;
+  hint?: string;
   placeholder?: string;
-  description?: string;
-  options: Option[];
-  className?: string;
+  items: SelectItemType[];
+  size?: "sm" | "md";
+  disabled?: boolean;
+  children: ReactNode | ((item: SelectItemType) => ReactNode);
 }
 
-function RHFSelect<T extends FieldValues>({
+export const RHFSelect = ({
   name,
   label,
+  hint,
   placeholder,
-  description,
-  options,
-  className,
-}: RHFSelectProps<T>) {
-  const {
-    control,
-    formState: { errors },
-  } = useFormContext<T>();
-
- 
-  const error = errors[name];
+  items,
+  size = "sm",
+  disabled,
+  children,
+}: RHFSelectProps) => {
+  const { control } = useFormContext();
 
   return (
-    <div className="space-y-1">
-      {label && (
-        <Label htmlFor={name} className="text-sm font-medium text-gray-700">
-          {label}
-        </Label>
+    <Controller
+      name={name}
+      control={control}
+      render={({ field, fieldState: { error } }) => (
+        <Select
+          {...field}
+          label={label}
+          hint={error?.message || hint}
+          placeholder={placeholder}
+          items={items}
+          size={size}
+          isDisabled={disabled}
+          selectedKey={field.value}
+          onSelectionChange={(key) => field.onChange(key)}
+        >
+          {children}
+        </Select>
       )}
-
-      <Controller
-        name={name}
-        control={control}
-        render={({ field }) => (
-          <Select
-            onValueChange={(value) => field.onChange(value)}
-            value={field.value || ""}
-          >
-            <SelectTrigger
-              id={name}
-              className={clsx(
-                "w-full",
-                className,
-                error && "border-red-600 focus:ring-red-500 focus:border-red-500"
-              )}
-            >
-              <SelectValue placeholder={placeholder || "Select..."} />
-            </SelectTrigger>
-
-            <SelectContent>
-              {options.map((option) => (
-                <SelectItem key={option.value} value={option.value}>
-                  {option.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        )}
-      />
-
-      {description && (
-        <p className="text-xs text-gray-500">{description}</p>
-      )}
-
-      {error && (
-        <p className="text-xs text-red-600">
-          {errors[name]?.message?.toString()}
-        </p>
-      )}
-    </div>
+    />
   );
-}
-
-
+};
 
 export default RHFSelect;

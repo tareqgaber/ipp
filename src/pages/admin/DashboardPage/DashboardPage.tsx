@@ -1,8 +1,7 @@
 import { useAuth } from "../../../hooks";
 import { motion } from "framer-motion";
-import { Button } from "../../../components/ui/button";
+import { Button } from "@/components/base/buttons/button";
 import { useLogout } from "../../../api/queries/auth";
-import { VehiclesTableExample } from "@/components/examples/VehiclesTableExample";
 import {
   staggerContainerVariants,
   staggerItemVariants,
@@ -26,11 +25,7 @@ export function DashboardPage() {
         <h1 className="text-3xl font-bold">Dashboard</h1>
         <div className="flex items-center gap-2">
           <motion.div whileTap={{ scale: 0.95 }}>
-            <Button
-              onClick={() => logout.mutate()}
-              variant="outlined"
-              color="gray"
-            >
+            <Button onClick={() => logout.mutate()} color="primary">
               Logout
             </Button>
           </motion.div>
@@ -74,14 +69,6 @@ export function DashboardPage() {
         <p>
           You are viewing the admin dashboard accessible to admin users only.
         </p>
-      </motion.div>
-
-      {/* DataTable Example */}
-      <motion.div
-        variants={staggerItemVariants}
-        className="p-6 bg-card rounded-lg shadow"
-      >
-        <VehiclesTableExample />
       </motion.div>
     </motion.div>
   );

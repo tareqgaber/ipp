@@ -1,8 +1,7 @@
-import RHFCheckbox from "../../../../components/RHFInputs/RHFCheckBox";
-import RHFInput from "../../../../components/RHFInputs/RHFInput";
+import { RHFCheckbox, RHFInput } from "@/components/RHFInputs";
 import { useForm, FormProvider } from "react-hook-form";
 import { Link } from "react-router";
-import { Button } from "../../../../components/ui/button";
+import { Button } from "@/components/base/buttons/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import { useLogin } from "@/api/queries";

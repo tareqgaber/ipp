@@ -1,77 +1,50 @@
-import {
-  Controller,
-  useFormContext,
-  type FieldValues,
-  type Path,
-} from "react-hook-form";
-import { Label } from "@/components/ui/label";
-import { useState } from "react";
-import clsx from "clsx";
-import FilePicker from "../FilePicker";
+import { Controller, useFormContext } from "react-hook-form";
+import { FileUploadDropZone } from "@/components/application/file-upload/file-upload-base";
 
-interface RHFFileUploadProps<T extends FieldValues> {
-  name: Path<T>;
-  label?: string;
-  description?: string;
+interface RHFFileUploadProps {
+  name: string;
+  hint?: string;
+  disabled?: boolean;
   accept?: string;
-  multiple?: boolean;
+  allowsMultiple?: boolean;
+  maxSize?: number;
   className?: string;
 }
 
-function RHFFileUpload<T extends FieldValues>({
+export const RHFFileUpload = ({
   name,
-  label,
-  description,
+  hint,
+  disabled,
   accept,
-  multiple,
+  allowsMultiple = true,
+  maxSize,
   className,
-}: RHFFileUploadProps<T>) {
-  const {
-    control,
-    formState: { errors },
-  } = useFormContext<T>();
-
-  const [fileNames, setFileNames] = useState<string[]>([]);
-  const error = errors[name];
+}: RHFFileUploadProps) => {
+  const { control } = useFormContext();
 
   return (
-    <div className={clsx("flex flex-col space-y-2", className)}>
-      {label && (
-        <Label htmlFor={name} className="font-medium text-sm">
-          {label}
-        </Label>
+    <Controller
+      name={name}
+      control={control}
+      render={({ field }) => (
+        <FileUploadDropZone
+          hint={hint}
+          isDisabled={disabled}
+          accept={accept}
+          allowsMultiple={allowsMultiple}
+          maxSize={maxSize}
+          className={className}
+          onDropFiles={(files) => {
+            if (allowsMultiple) {
+              field.onChange(files);
+            } else {
+              field.onChange(files[0]);
+            }
+          }}
+        />
       )}
-
-      <Controller
-        name={name}
-        control={control}
-        render={({ field: { onChange, ref } }) => (
-          <FilePicker
-            name={name}
-            accept={accept}
-            multiple={multiple}
-            onChange={(files) => {
-              const names = Array.isArray(files)
-                ? files.map((f) => f.name)
-                : files
-                ? [files.name]
-                : [];
-              setFileNames(names);
-              onChange(files);
-            }}
-          />
-        )}
-      />
-
-      {description && <p className="text-xs text-gray-500">{description}</p>}
-
-      {error && (
-        <p className="text-xs text-red-600">
-          {errors[name]?.message?.toString()}
-        </p>
-      )}
-    </div>
+    />
   );
-}
+};
 
 export default RHFFileUpload;
