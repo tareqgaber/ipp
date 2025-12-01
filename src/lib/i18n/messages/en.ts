@@ -13,5 +13,6 @@ export default {
   validation,
   pages: {
     dashboard,
+    auth,
   },
 } as const;

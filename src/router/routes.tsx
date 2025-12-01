@@ -13,10 +13,6 @@ import { DashboardPage } from "@/pages/admin";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Navigate to="/admin" replace />,
-  },
-  {
     element: (
       <GuestRoute>
         <AuthLayout />
@@ -33,7 +29,7 @@ export const router = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       {
-        path: "/admin",
+        path: "/",
         element: (
           <ProtectedRoute roles="admin">
             <DashboardPage />
@@ -44,6 +40,6 @@ export const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <Navigate to="/admin" replace />,
+    element: <Navigate to="/" replace />,
   },
 ]);
