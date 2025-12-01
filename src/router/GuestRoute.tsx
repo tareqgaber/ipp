@@ -13,10 +13,7 @@ interface GuestRouteProps {
  * (e.g., login, signup, forgot password)
  * Redirects authenticated users to the specified path (default: /admin)
  */
-export function GuestRoute({
-  children,
-  redirectTo = "/admin",
-}: GuestRouteProps) {
+export function GuestRoute({ children, redirectTo = "/" }: GuestRouteProps) {
   const { isAuthenticated, isLoading } = useAuth();
 
   // Show loading state while checking authentication

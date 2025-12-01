@@ -69,7 +69,7 @@ export const useLogin = () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.auth.all });
 
       // Navigate to dashboard or home
-      navigate("/admin", { replace: true });
+      navigate("/", { replace: true });
     },
     meta: {
       // Disable default success toast since we're navigating
