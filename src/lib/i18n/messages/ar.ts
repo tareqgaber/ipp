@@ -1,4 +1,5 @@
 import auth from "./ar/auth.json";
+import layout from "./ar/pages/layout.json";
 import common from "./ar/common.json";
 import errors from "./ar/errors.json";
 import messages from "./ar/messages.json";
@@ -14,5 +15,6 @@ export default {
   pages: {
     dashboard,
     auth,
+    layout
   },
 } as const;
