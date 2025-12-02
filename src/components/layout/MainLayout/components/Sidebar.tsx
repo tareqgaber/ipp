@@ -138,12 +138,12 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed = false, onToggle, onCloseM
                                         flex items-center gap-2 lg:gap-3 transition-colors p-2 lg:p-0
                                         ${active ? 'text-orange-500' : 'text-white'} 
                                         ${collapsed ? 'justify-center' : 'justify-start'}
-                                        rounded-lg lg:rounded-none hover:bg-white/10
+                                        rounded-lg lg:rounded-none 
                                     `}
                                     title={collapsed ? item.label : undefined}
                                     onClick={handleLinkClick}
                                 >
-                                    <span className={`${!collapsed && ''}`}>
+                                    <span>
                                         {item.icon({
                                             className: "w-5 h-5 lg:w-auto lg:h-auto",
                                             bg: active ? '#F68C22' : '#4C8CE6',
@@ -179,7 +179,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed = false, onToggle, onCloseM
                                         flex items-center gap-2 lg:gap-3 transition-colors p-2 lg:p-0
                                         ${active ? 'text-orange-500' : 'text-white'} 
                                         ${collapsed ? 'justify-center' : 'justify-start'}
-                                        rounded-lg lg:rounded-none hover:bg-white/10
+                                        rounded-lg lg:rounded-none 
                                     `}
                                     title={collapsed ? item.label : undefined}
                                     onClick={handleLinkClick}
