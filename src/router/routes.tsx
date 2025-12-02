@@ -10,6 +10,7 @@ import { LoginPage } from "@/pages/auth";
 
 // admin pages
 import { DashboardPage } from "@/pages/admin";
+import { PermitRequestsPage } from "@/pages/admin/PermitRequestsPage";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute roles="admin">
             <DashboardPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/permit-requests",
+        element: (
+          <ProtectedRoute roles="admin">
+            <PermitRequestsPage />
           </ProtectedRoute>
         ),
       },

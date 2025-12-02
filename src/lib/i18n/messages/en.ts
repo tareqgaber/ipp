@@ -4,6 +4,7 @@ import errors from "./en/errors.json";
 import messages from "./en/messages.json";
 import validation from "./en/validation.json";
 import dashboard from "./en/pages/dashboard.json";
+import permitRequests from "./en/pages/permitRequests.json";
 
 export default {
   auth,
@@ -14,5 +15,6 @@ export default {
   pages: {
     dashboard,
     auth,
+    permitRequests,
   },
 } as const;
