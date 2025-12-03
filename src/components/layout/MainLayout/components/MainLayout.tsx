@@ -111,7 +111,7 @@ const MainLayout: React.FC<LayoutProps> = ({ children }) => {
           </div>
         </header>
 
-        <div className="py-6 lg:py-10 px-4 sm:px-6 lg:px-14">
+        <div className="py-6 lg:py-10 px-4 sm:px-6 lg:px-14 bg-[#F7F7F7]">
           <Outlet />
         </div>
       </main>
