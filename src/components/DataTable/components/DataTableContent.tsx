@@ -26,6 +26,7 @@ export const DataTableContent = <T extends Record<string, any>>({
   isLoading,
   selectedIds,
   onToggleRow,
+  onToggleAll,
   onSort,
   sortBy,
   sortOrder,
@@ -67,7 +68,10 @@ export const DataTableContent = <T extends Record<string, any>>({
       selectionBehavior="toggle"
       selectedKeys={new Set(selectedIds)}
       onSelectionChange={(keys) => {
-        if (keys === "all") return;
+        if (keys === "all") {
+          onToggleAll();
+          return;
+        }
         const newIds = Array.from(keys) as string[];
         // Handle selection changes
         newIds.forEach((id) => {

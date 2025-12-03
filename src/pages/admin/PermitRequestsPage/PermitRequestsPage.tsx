@@ -84,11 +84,7 @@ export const PermitRequestsPage = () => {
     [t]
   );
 
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <DataTable config={tableConfig} data={data} isLoading={isLoading} />
-    </div>
-  );
+  return <DataTable config={tableConfig} data={data} isLoading={isLoading} />;
 };
 
 export default PermitRequestsPage;
