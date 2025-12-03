@@ -18,6 +18,7 @@ interface DataTableFilterDrawerProps {
   activeFilters: Record<string, any>;
   onApply: (filters: Record<string, any>) => void;
   onReset: () => void;
+  subtitle?: string;
 }
 
 // Wrapper component for filter fields with reset button
@@ -71,6 +72,7 @@ export const DataTableFilterDrawer = ({
   activeFilters,
   onApply,
   onReset,
+  subtitle,
 }: DataTableFilterDrawerProps) => {
   const methods = useForm({
     defaultValues: activeFilters,
@@ -104,25 +106,44 @@ export const DataTableFilterDrawer = ({
         >
           <div className="flex h-full flex-col">
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
-              <Dialog.Title className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                Filters
-              </Dialog.Title>
-              <Dialog.Close asChild>
-                <button
-                  className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-800 dark:hover:text-gray-300"
-                  aria-label="Close"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-              </Dialog.Close>
+            <div className="px-6 pt-4 pb-2">
+              <div className="flex items-center justify-between">
+                <div className="flex flex-col gap-1">
+                  <Dialog.Title className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                    Filters
+                  </Dialog.Title>
+                  {subtitle && (
+                    <Dialog.Description className="text-sm text-gray-600 dark:text-gray-400">
+                      {subtitle}
+                    </Dialog.Description>
+                  )}
+                </div>
+                <Dialog.Close asChild>
+                  <button
+                    className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-800 dark:hover:text-gray-300"
+                    aria-label="Close"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </Dialog.Close>
+              </div>
             </div>
 
             {/* Body */}
             <div className="flex-1 overflow-y-auto px-6 py-4">
               <FormProvider {...methods}>
                 <form className="space-y-4">
-                  {filters.map((filter) => {
+                  {filters.map((filter, index) => {
+                    // Handle separator
+                    if (filter.type === "separator") {
+                      return (
+                        <div
+                          key={`separator-${index}`}
+                          className="border-t border-gray-200 dark:border-gray-700 my-6"
+                        />
+                      );
+                    }
+
                     switch (filter.type) {
                       case "text":
                         return (
@@ -213,15 +234,15 @@ export const DataTableFilterDrawer = ({
 
             {/* Footer */}
             <div className="flex items-center justify-between border-t border-gray-200 px-6 py-4 dark:border-gray-700">
-              <Button color="tertiary" size="sm" onClick={handleReset}>
-                Reset
-              </Button>
-              <div className="flex gap-2">
-                <Button color="secondary" size="sm" onClick={onClose}>
-                  Cancel
+              {/* <Button color="secondary" size="sm" onClick={onClose}>
+                Cancel
+              </Button> */}
+              <div className="flex gap-2 ms-auto">
+                <Button color="secondary" size="sm" onClick={handleReset}>
+                  Reset All
                 </Button>
                 <Button color="primary" size="sm" onClick={handleApply}>
-                  Apply Filters
+                  Apply
                 </Button>
               </div>
             </div>

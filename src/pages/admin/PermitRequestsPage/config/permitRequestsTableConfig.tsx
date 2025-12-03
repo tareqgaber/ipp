@@ -89,6 +89,7 @@ export const createPermitRequestsTableConfig = (
   searchPlaceholder:
     t?.("pages.permitRequests.searchPlaceholder") ??
     "Search permit requests...",
+  filterSubtitle: "Apply filters to narrow down permit requests",
   defaultPageSize: 10,
 
   columns: [
@@ -216,6 +217,9 @@ export const createPermitRequestsTableConfig = (
       placeholder: "Search by name...",
     },
     {
+      type: "separator",
+    },
+    {
       type: "select",
       name: "permitType",
       label: "Permit Type",
@@ -236,6 +240,9 @@ export const createPermitRequestsTableConfig = (
         { value: "high", label: "High" },
         { value: "urgent", label: "Urgent" },
       ],
+    },
+    {
+      type: "separator",
     },
     {
       type: "dateRange",

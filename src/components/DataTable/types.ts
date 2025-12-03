@@ -52,14 +52,20 @@ export type FilterFieldType =
 /**
  * Filter field configuration
  */
-export interface DataTableFilter {
-  type: FilterFieldType;
-  name: string;
-  label: string;
-  placeholder?: string;
-  options?: Array<{ value: string; label: string }>;
-  defaultValue?: any;
-}
+export type DataTableFilter =
+  | {
+      type: FilterFieldType;
+      name: string;
+      label: string;
+      placeholder?: string;
+      options?: Array<{ value: string; label: string }>;
+      defaultValue?: any;
+    }
+  | {
+      type: "separator";
+      name?: never;
+      label?: never;
+    };
 
 /**
  * Metric card configuration (acts as filter)
@@ -119,6 +125,7 @@ export interface DataTableConfig<T> {
 
   // Filters (optional)
   filters?: DataTableFilter[];
+  filterSubtitle?: string;
 
   // Actions
   actions?: DataTableAction<T>[];

@@ -33,6 +33,7 @@ export const DataTable = <T extends Record<string, any>>({
     metricCards,
     metricCardsSelectionMode = "radio",
     filters = [],
+    filterSubtitle,
     actions = [],
     bulkActions = [],
     enableSearch = true,
@@ -182,6 +183,7 @@ export const DataTable = <T extends Record<string, any>>({
           activeFilters={activeFilters}
           onApply={handleApplyFilters}
           onReset={handleResetFilters}
+          subtitle={filterSubtitle}
         />
       )}
     </div>
