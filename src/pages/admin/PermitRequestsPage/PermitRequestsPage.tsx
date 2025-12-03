@@ -85,7 +85,6 @@ export const PermitRequestsPage = () => {
         handleBulkApprove,
         handleBulkDelete,
         handleExport,
-        t
       ),
     [t]
   );

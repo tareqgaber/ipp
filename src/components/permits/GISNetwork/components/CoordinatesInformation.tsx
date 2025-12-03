@@ -1,5 +1,5 @@
 import UsersIcon from '@/assets/icons/UsersIcon'
-import React from 'react'
+
 import {  ReadOnlyTable, type ReadOnlyTableProps } from './ReadOnlyTable'
 
 const CoordinatesInformation : React.FC<ReadOnlyTableProps> = ({data}) => {

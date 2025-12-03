@@ -1,6 +1,6 @@
 # i18n (Internationalization) Setup
 
-This directory contains the internationalization configuration for the Bena application, supporting **Arabic (ar)** and **English (en)** languages.
+This directory contains the internationalization configuration for the ipp application, supporting **Arabic (ar)** and **English (en)** languages.
 
 ## Directory Structure
 

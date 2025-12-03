@@ -26,7 +26,7 @@ export const MOCK_LOGIN_RESPONSE: LoginResponse = {
   user: {
     id: "123",
     name: "Mock User",
-    email: "mock@bena.com",
+    email: "mock@ipp.com",
     role: "admin",
     createdAt: "2025-01-01T00:00:00.000Z",
     updatedAt: "2025-01-01T00:00:00.000Z",

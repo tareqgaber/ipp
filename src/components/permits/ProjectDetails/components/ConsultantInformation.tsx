@@ -1,6 +1,7 @@
 import UsersIcon from '@/assets/icons/UsersIcon'
-import React from 'react'
+
 import { ReadOnlyTable, type ReadOnlyTableProps } from './ReadOnlyTable'
+import type React from 'react'
 
 const ConsultantInformation: React.FC<ReadOnlyTableProps> = ({data}) => {
     return (
