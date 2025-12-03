@@ -5,6 +5,7 @@ import { AuthLayout } from "@/components/layout";
 import { LoginPage } from "@/pages/auth";
 import MainLayout from "@/components/layout/MainLayout/components/MainLayout";
 import { DashboardPage } from "@/pages/admin";
+import { PermitRequestsPage } from "@/pages/admin/PermitRequestsPage";
 import MyTasksPage from "@/pages/MyTasksPage";
 import PermitsPage from "@/pages/PermitsPage";
 import ExcavationPage from "@/pages/ExcavationPage";
@@ -78,6 +79,14 @@ export const router = createBrowserRouter([
       {
         path: "/settings",
         element: <SettingsPage />,
+      },
+      {
+        path: "/permit-requests",
+        element: (
+          <ProtectedRoute roles="admin">
+            <PermitRequestsPage />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

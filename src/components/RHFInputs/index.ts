@@ -6,3 +6,7 @@ export {
   RHFFileUpload,
   default as RHFFileUploadDefault,
 } from "./RHFFileUpload";
+export {
+  RHFDateRangePicker,
+  default as RHFDateRangePickerDefault,
+} from "./RHFDateRangePicker";

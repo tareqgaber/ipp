@@ -5,7 +5,6 @@ import { Button } from "@/components/base/buttons/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import { useLogin } from "@/api/queries";
-import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { useTranslation } from "@/hooks/useTranslation";
 
 const loginSchema = z.object({

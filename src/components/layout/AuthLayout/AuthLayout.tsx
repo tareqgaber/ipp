@@ -12,7 +12,7 @@ export function AuthLayout() {
     <div className="relative min-h-screen w-screen bg-[url('@/assets/images/login-bg.png')] bg-cover bg-center flex items-center justify-center flex-col p-6">
       <div className="absolute inset-0 w-full h-full bg-black opacity-50"></div>
 
-      <div className="hidden lg:block h-[148px]"></div>
+      <div className="h-[120px] lg:h-[148px]"></div>
       <div className="w-full md:w-1/2 lg:w-[460px] flex flex-col relative">
         <div className="bg-white rounded-3xl shadow-[0px_4px_74.69999694824219px_0px_rgba(0,0,0,0.05)] p-6 lg:p-10">
           {/* <Link to="/"> */}
@@ -21,6 +21,7 @@ export function AuthLayout() {
           <motion.div
             initial="initial"
             animate="animate"
+            
             exit="exit"
             variants={slideInVariants("ltr")}
             className="w-full"
