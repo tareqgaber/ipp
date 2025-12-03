@@ -134,6 +134,30 @@ import { RHFFileUpload } from "@/components/RHFInputs";
 - `allowsMultiple` (boolean): Allow multiple files (default: true)
 - `maxSize` (number): Maximum file size in bytes
 
+### RHFDateRangePicker
+
+Date range picker wrapper with presets (from Untitled UI).
+
+```tsx
+import { RHFDateRangePicker } from "@/components/RHFInputs";
+
+<RHFDateRangePicker
+  name="dateRange"
+  label="Date Range"
+  hint="Select a date range"
+/>;
+```
+
+**Props:**
+
+- `name` (string, required): Field name in the form
+- `label` (string): Label text
+- `hint` (ReactNode): Helper text
+- `disabled` (boolean): Disable the date range picker
+- `className` (string): Additional CSS classes
+
+**Note:** The value will be stored as an object with `start` and `end` DateValue properties from `@internationalized/date`.
+
 ## Usage Example
 
 ```tsx
@@ -145,6 +169,7 @@ import {
   RHFCheckbox,
   RHFSelect,
   RHFToggle,
+  RHFDateRangePicker,
 } from "@/components/RHFInputs";
 
 const schema = z.object({

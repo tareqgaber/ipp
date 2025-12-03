@@ -5,20 +5,20 @@
 export const endpoints = {
   // Auth endpoints
   auth: {
-    login: '/login',
-    logout: '/auth/logout',
-    register: '/signup',
-    refresh: '/auth/refresh',
-    profile: '/auth/profile',
-    updateProfile: '/auth/profile',
-    changePassword: '/auth/change-password',
+    login: "/login",
+    logout: "/auth/logout",
+    register: "/signup",
+    refresh: "/auth/refresh",
+    profile: "/auth/profile",
+    updateProfile: "/auth/profile",
+    changePassword: "/auth/change-password",
   },
 
   // Opportunities endpoints
   opportunities: {
-    list: '/opportunities',
+    list: "/opportunities",
     detail: (id: string | number) => `/opportunities/${id}`,
-    create: '/opportunities',
+    create: "/opportunities",
     update: (id: string | number) => `/opportunities/${id}`,
     delete: (id: string | number) => `/opportunities/${id}`,
     publish: (id: string | number) => `/opportunities/${id}/publish`,
@@ -27,9 +27,9 @@ export const endpoints = {
 
   // Investors endpoints
   investors: {
-    list: '/investors',
+    list: "/investors",
     detail: (id: string | number) => `/investors/${id}`,
-    create: '/investors',
+    create: "/investors",
     update: (id: string | number) => `/investors/${id}`,
     delete: (id: string | number) => `/investors/${id}`,
     verify: (id: string | number) => `/investors/${id}/verify`,
@@ -37,7 +37,17 @@ export const endpoints = {
 
   // Site Opportunities endpoints
   siteOpportunities: {
-    list: '/site-opportunities',
+    list: "/site-opportunities",
     detail: (id: string | number) => `/site-opportunities/${id}`,
+  },
+
+  // Permit Requests endpoints
+  permitRequests: {
+    list: "/permit-requests",
+    detail: (id: string | number) => `/permit-requests/${id}`,
+    approve: (id: string | number) => `/permit-requests/${id}/approve`,
+    reject: (id: string | number) => `/permit-requests/${id}/reject`,
+    bulkDelete: "/permit-requests/bulk-delete",
+    bulkApprove: "/permit-requests/bulk-approve",
   },
 } as const;
