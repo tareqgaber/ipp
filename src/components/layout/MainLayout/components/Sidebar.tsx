@@ -119,8 +119,12 @@ const Sidebar: React.FC<SidebarProps> = ({
       <aside
         className={`
                 flex flex-col justify-between h-screen bg-linear-to-b from-[#144892] to-[#06162C] 
-                py-6 px-4 lg:px-5 transition-all duration-300 
-                ${collapsed ? "w-16 lg:w-20" : "w-[250px] lg:w-[215px]"} 
+                py-6 px-4 transition-all duration-300 
+                ${
+                  collapsed
+                    ? "w-16 lg:w-14 lg:px-2"
+                    : "w-[250px] lg:w-[215px] lg:px-5"
+                } 
                 rtl:border-l rtl:border-r-0
                 overflow-y-auto
             `}
