@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm, useFormContext } from "react-hook-form";
 import { Button } from "@/components/base/buttons/button";
 import {
   RHFInput,
@@ -19,6 +19,50 @@ interface DataTableFilterDrawerProps {
   onApply: (filters: Record<string, any>) => void;
   onReset: () => void;
 }
+
+// Wrapper component for filter fields with reset button
+const FilterFieldWrapper = ({
+  label,
+  name,
+  children,
+}: {
+  label: string;
+  name: string;
+  children: React.ReactNode;
+}) => {
+  const { setValue, watch } = useFormContext();
+  const value = watch(name);
+  const hasValue =
+    value !== undefined &&
+    value !== null &&
+    value !== "" &&
+    (typeof value !== "object" ||
+      (Array.isArray(value)
+        ? value.length > 0
+        : Object.keys(value).length > 0));
+
+  const handleReset = () => {
+    setValue(name, undefined);
+  };
+
+  return (
+    <div className="space-y-1.5">
+      <div className="flex items-center justify-between">
+        <label className="text-md font-medium text-brand-500">{label}</label>
+        {hasValue && (
+          <button
+            type="button"
+            onClick={handleReset}
+            className="text-sm font-medium text-orange-500 underline hover:text-orange-600 transition-colors"
+          >
+            Reset
+          </button>
+        )}
+      </div>
+      {children}
+    </div>
+  );
+};
 
 export const DataTableFilterDrawer = ({
   isOpen,
@@ -82,12 +126,16 @@ export const DataTableFilterDrawer = ({
                     switch (filter.type) {
                       case "text":
                         return (
-                          <RHFInput
+                          <FilterFieldWrapper
                             key={filter.name}
-                            name={filter.name}
                             label={filter.label}
-                            placeholder={filter.placeholder}
-                          />
+                            name={filter.name}
+                          >
+                            <RHFInput
+                              name={filter.name}
+                              placeholder={filter.placeholder}
+                            />
+                          </FilterFieldWrapper>
                         );
 
                       case "select":
@@ -100,27 +148,32 @@ export const DataTableFilterDrawer = ({
                         );
 
                         return (
-                          <RHFSelect
+                          <FilterFieldWrapper
                             key={filter.name}
-                            name={filter.name}
                             label={filter.label}
-                            placeholder={filter.placeholder}
-                            items={selectItems}
+                            name={filter.name}
                           >
-                            {(item) => (
-                              <SelectItem id={item.id} key={item.id}>
-                                {item.label}
-                              </SelectItem>
-                            )}
-                          </RHFSelect>
+                            <RHFSelect
+                              name={filter.name}
+                              placeholder={filter.placeholder}
+                              items={selectItems}
+                            >
+                              {(item) => (
+                                <SelectItem id={item.id} key={item.id}>
+                                  {item.label}
+                                </SelectItem>
+                              )}
+                            </RHFSelect>
+                          </FilterFieldWrapper>
                         );
 
                       case "numberRange":
                         return (
-                          <div key={filter.name} className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                              {filter.label}
-                            </label>
+                          <FilterFieldWrapper
+                            key={filter.name}
+                            label={filter.label}
+                            name={filter.name}
+                          >
                             <div className="grid grid-cols-2 gap-2">
                               <RHFInput
                                 name={`${filter.name}.min`}
@@ -133,16 +186,18 @@ export const DataTableFilterDrawer = ({
                                 type="number"
                               />
                             </div>
-                          </div>
+                          </FilterFieldWrapper>
                         );
 
                       case "dateRange":
                         return (
-                          <RHFDateRangePicker
+                          <FilterFieldWrapper
                             key={filter.name}
-                            name={filter.name}
                             label={filter.label}
-                          />
+                            name={filter.name}
+                          >
+                            <RHFDateRangePicker name={filter.name} />
+                          </FilterFieldWrapper>
                         );
 
                       default:

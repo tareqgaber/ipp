@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { FC, ReactNode } from "react";
 
 /**
  * Table parameters for server-side operations
@@ -83,7 +83,7 @@ export interface DataTableMetricCard {
 export interface DataTableAction<T> {
   id: string;
   label: string;
-  icon?: ReactNode;
+  icon?: FC;
   onClick: (row: T) => void;
   variant?: "default" | "success" | "danger" | "warning";
   disabled?: (row: T) => boolean;

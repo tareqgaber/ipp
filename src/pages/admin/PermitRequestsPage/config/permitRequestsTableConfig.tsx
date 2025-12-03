@@ -98,7 +98,7 @@ export const createPermitRequestsTableConfig = (
       accessorKey: "requestNumber",
       sortable: true,
       cell: (row) => (
-        <span className="font-medium text-primary-600 dark:text-primary-400">
+        <span className="font-medium text-primary-600 dark:text-primary-400 text-nowrap">
           {row.requestNumber}
         </span>
       ),
@@ -139,7 +139,7 @@ export const createPermitRequestsTableConfig = (
       accessorKey: "submittedDate",
       sortable: true,
       cell: (row) => (
-        <span className="text-sm text-gray-600 dark:text-gray-400">
+        <span className="text-sm text-gray-600 dark:text-gray-400 text-nowrap">
           {format(new Date(row.submittedDate), "MMM dd, yyyy")}
         </span>
       ),

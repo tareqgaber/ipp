@@ -136,15 +136,15 @@ export const DataTableContent = <T extends Record<string, any>>({
               ))}
               {actions && actions.length > 0 && (
                 <Table.Cell
-                  className={`sticky right-0 bg-primary shadow-lg ${
+                  className={`sticky right-0 bg-primary before:content-[''] before:absolute before:left-[-25px] before:top-0 before:bottom-[-1px] before:w-[25px]  before:bg-[linear-gradient(270deg,rgba(0,0,0,0.015)_0%,rgba(0,0,0,0)_100%)] ${
                     isSelected ? "bg-secondary" : ""
                   }`}
                 >
                   <div className="flex justify-end">
                     <Dropdown.Root>
-                      <Dropdown.DotsButton />
+                      <Dropdown.DotsButton className="w-9 h-9 flex items-center justify-center text-brand-500 bg-brand-50 rounded-full" />
                       <Dropdown.Popover className="w-min">
-                        <Dropdown.Menu>
+                        <Dropdown.Menu className="w-[160px]">
                           {actions
                             .filter(
                               (action) => !action.hidden || !action.hidden(row)
@@ -160,14 +160,9 @@ export const DataTableContent = <T extends Record<string, any>>({
                                       ? action.disabled(row)
                                       : false
                                   }
-                                >
-                                  {IconComponent && (
-                                    <span className="mr-2">
-                                      {IconComponent}
-                                    </span>
-                                  )}
-                                  <span className="pr-4">{action.label}</span>
-                                </Dropdown.Item>
+                                  label={action.label}
+                                  // icon={IconComponent}
+                                ></Dropdown.Item>
                               );
                             })}
                         </Dropdown.Menu>
