@@ -3,6 +3,7 @@ import { Button } from "@/components/base/buttons/button";
 import { Badge } from "@/components/base/badges/badges";
 import { useState, useEffect } from "react";
 import { FilterLines, SearchLg } from "@untitledui/icons";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface DataTableHeaderProps {
   title: string;
@@ -27,6 +28,7 @@ export const DataTableHeader = ({
   enableSearch = true,
   enableFilters = true,
 }: DataTableHeaderProps) => {
+  const { t } = useTranslation();
   const [localSearch, setLocalSearch] = useState(searchValue);
 
   // Debounce search
@@ -79,7 +81,7 @@ export const DataTableHeader = ({
               onClick={onFilterClick}
               iconLeading={FilterLines}
             >
-              Filters
+              {t("components.dataTable.filterDrawer.title")}
             </Button>
             {activeFilterCount > 0 && (
               <Badge

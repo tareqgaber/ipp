@@ -10,6 +10,7 @@ import {
 import { SelectItem } from "@/components/base/select/select-item";
 import type { DataTableFilter } from "../types";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface DataTableFilterDrawerProps {
   isOpen: boolean;
@@ -31,6 +32,7 @@ const FilterFieldWrapper = ({
   name: string;
   children: React.ReactNode;
 }) => {
+  const { t } = useTranslation();
   const { setValue, watch } = useFormContext();
   const value = watch(name);
   const hasValue =
@@ -56,7 +58,7 @@ const FilterFieldWrapper = ({
             onClick={handleReset}
             className="text-sm font-medium text-orange-500 underline hover:text-orange-600 transition-colors"
           >
-            Reset
+            {t("components.dataTable.filterDrawer.resetButton")}
           </button>
         )}
       </div>
@@ -74,6 +76,7 @@ export const DataTableFilterDrawer = ({
   onReset,
   subtitle,
 }: DataTableFilterDrawerProps) => {
+  const { t } = useTranslation();
   const methods = useForm({
     defaultValues: activeFilters,
     values: activeFilters,
@@ -110,7 +113,7 @@ export const DataTableFilterDrawer = ({
               <div className="flex items-center justify-between">
                 <div className="flex flex-col gap-1">
                   <Dialog.Title className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                    Filters
+                    {t("components.dataTable.filterDrawer.title")}
                   </Dialog.Title>
                   {subtitle && (
                     <Dialog.Description className="text-sm text-gray-600 dark:text-gray-400">
@@ -121,7 +124,9 @@ export const DataTableFilterDrawer = ({
                 <Dialog.Close asChild>
                   <button
                     className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-800 dark:hover:text-gray-300"
-                    aria-label="Close"
+                    aria-label={t(
+                      "components.dataTable.filterDrawer.closeLabel"
+                    )}
                   >
                     <X className="h-5 w-5" />
                   </button>
@@ -198,12 +203,16 @@ export const DataTableFilterDrawer = ({
                             <div className="grid grid-cols-2 gap-2">
                               <RHFInput
                                 name={`${filter.name}.min`}
-                                placeholder="Min"
+                                placeholder={t(
+                                  "components.dataTable.filterDrawer.minPlaceholder"
+                                )}
                                 type="number"
                               />
                               <RHFInput
                                 name={`${filter.name}.max`}
-                                placeholder="Max"
+                                placeholder={t(
+                                  "components.dataTable.filterDrawer.maxPlaceholder"
+                                )}
                                 type="number"
                               />
                             </div>
@@ -239,10 +248,10 @@ export const DataTableFilterDrawer = ({
               </Button> */}
               <div className="flex gap-2 ms-auto">
                 <Button color="secondary" size="sm" onClick={handleReset}>
-                  Reset All
+                  {t("components.dataTable.filterDrawer.resetButton")}
                 </Button>
                 <Button color="primary" size="sm" onClick={handleApply}>
-                  Apply
+                  {t("components.dataTable.filterDrawer.applyButton")}
                 </Button>
               </div>
             </div>

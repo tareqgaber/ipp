@@ -1,3 +1,63 @@
 {
-  "searchPlaceholder": "Search by ID or External Reference Number"
+  "searchPlaceholder": "Search by ID or External Reference Number",
+  "title": "Permit Requests Management",
+  "subtitle": "View and manage all permit requests",
+  "filterSubtitle": "Apply filters to narrow down permit requests",
+  "columns": {
+    "requestNumber": "Request #",
+    "applicant": "Applicant",
+    "type": "Type",
+    "status": "Status",
+    "submitted": "Submitted",
+    "priority": "Priority",
+    "estimatedCost": "Est. Cost"
+  },
+  "status": {
+    "pending": "Pending",
+    "underReview": "Under Review",
+    "approved": "Approved",
+    "rejected": "Rejected"
+  },
+  "permitType": {
+    "construction": "Construction",
+    "renovation": "Renovation",
+    "demolition": "Demolition",
+    "other": "Other"
+  },
+  "priority": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "urgent": "Urgent"
+  },
+  "metricCards": {
+    "allRequests": "All Requests",
+    "pending": "Pending",
+    "underReview": "Under Review",
+    "approved": "Approved",
+    "vsLastMonth": "vs last month"
+  },
+  "filters": {
+    "applicantName": "Applicant Name",
+    "applicantNamePlaceholder": "Search by name...",
+    "permitType": "Permit Type",
+    "priority": "Priority",
+    "submittedDateRange": "Submitted Date Range",
+    "estimatedCostRange": "Estimated Cost Range"
+  },
+  "actions": {
+    "viewDetails": "View Details",
+    "approve": "Approve",
+    "reject": "Reject",
+    "edit": "Edit"
+  },
+  "bulkActions": {
+    "approveSelected": "Approve Selected",
+    "deleteSelected": "Delete Selected",
+    "exportSelected": "Export Selected"
+  },
+  "confirmations": {
+    "deleteMultiple": "Are you sure you want to delete {{count}} permit request(s)?",
+    "exportingMultiple": "Exporting {{count}} permit request(s)"
+  }
 }

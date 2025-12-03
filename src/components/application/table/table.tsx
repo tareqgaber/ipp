@@ -204,8 +204,8 @@ const TableHeader = <T extends object>({
       {selectionBehavior === "toggle" && (
         <AriaColumn
           className={cx(
-            "relative py-2 pr-0 pl-4 bg-brand-50",
-            size === "sm" ? "w-9 md:pl-5" : "w-11 md:pl-6"
+            "relative py-2 pr-0 ps-4 bg-brand-50",
+            size === "sm" ? "w-9 md:ps-5" : "w-11 md:ps-6"
           )}
         >
           {selectionMode === "multiple" && (
@@ -247,7 +247,7 @@ const TableHead = ({
       className={(state) =>
         cx(
           "relative p-0 px-6 py-2 outline-hidden focus-visible:z-1 focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-bg-primary focus-visible:ring-inset",
-          selectionBehavior === "toggle" && "nth-2:pl-3",
+          selectionBehavior === "toggle" && "nth-2:ps-3",
           state.allowsSorting && "cursor-pointer",
           typeof className === "function" ? className(state) : className
         )
@@ -332,8 +332,8 @@ const TableRow = <T extends object>({
       {selectionBehavior === "toggle" && (
         <AriaCell
           className={cx(
-            "relative py-2 pr-0 pl-4",
-            size === "sm" ? "md:pl-5" : "md:pl-6"
+            "relative py-2 pr-0 ps-4",
+            size === "sm" ? "md:ps-5" : "md:ps-6"
           )}
         >
           <div className="flex items-end">
@@ -370,7 +370,7 @@ const TableCell = ({ className, children, ...props }: TableCellProps) => {
           size === "sm" && "px-5 py-3",
           size === "md" && "px-6 py-4",
 
-          selectionBehavior === "toggle" && "nth-2:pl-3",
+          selectionBehavior === "toggle" && "nth-2:ps-3",
 
           typeof className === "function" ? className(state) : className
         )

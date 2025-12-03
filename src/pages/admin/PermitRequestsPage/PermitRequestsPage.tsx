@@ -55,7 +55,9 @@ export const PermitRequestsPage = () => {
   const handleBulkDelete = (ids: string[]) => {
     if (
       window.confirm(
-        `Are you sure you want to delete ${ids.length} permit request(s)?`
+        t("pages.permitRequests.confirmations.deleteMultiple", {
+          count: ids.length,
+        })
       )
     ) {
       bulkDelete.mutate(ids);
@@ -65,7 +67,11 @@ export const PermitRequestsPage = () => {
   const handleExport = (ids: string[]) => {
     console.log("Exporting permit requests:", ids);
     // Implement export logic here
-    alert(`Exporting ${ids.length} permit request(s)`);
+    alert(
+      t("pages.permitRequests.confirmations.exportingMultiple", {
+        count: ids.length,
+      })
+    );
   };
 
   // Create table configuration

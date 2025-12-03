@@ -2,6 +2,7 @@ import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import type { DataTableBulkAction } from "../types";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface DataTableBulkActionsProps<T> {
   selectedCount: number;
@@ -18,6 +19,7 @@ export const DataTableBulkActions = <T,>({
   selectedIds,
   selectedRows,
 }: DataTableBulkActionsProps<T>) => {
+  const { t } = useTranslation();
   if (selectedCount === 0) return null;
 
   return (
@@ -33,12 +35,14 @@ export const DataTableBulkActions = <T,>({
           {/* Selected count */}
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
-              {selectedCount} selected
+              {t("components.dataTable.bulkActions.selectedCount", {
+                count: selectedCount,
+              })}
             </span>
             <button
               onClick={onClearSelection}
               className="rounded p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-              aria-label="Clear selection"
+              aria-label={t("components.dataTable.bulkActions.clearSelection")}
             >
               <X className="h-4 w-4" />
             </button>
