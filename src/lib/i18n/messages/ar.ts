@@ -1,22 +1,27 @@
 import auth from "./ar/auth.json";
-import layout from "./ar/pages/layout.json";
 import common from "./ar/common.json";
 import errors from "./ar/errors.json";
 import messages from "./ar/messages.json";
 import validation from "./ar/validation.json";
+import dataTable from "./ar/components/dataTable.json";
 import dashboard from "./ar/pages/dashboard.json";
+import layout from "./ar/pages/layout.json";
 import permitRequests from "./ar/pages/permitRequests.json";
 
-export default {
+const ar = {
   auth,
   common,
   errors,
   messages,
   validation,
+  components: {
+    dataTable,
+  },
   pages: {
     dashboard,
-    auth,
-    permitRequests,
     layout,
+    permitRequests,
   },
-} as const;
+};
+
+export default ar;

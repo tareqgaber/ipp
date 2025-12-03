@@ -12,6 +12,7 @@ import {
   DataTableBulkActions,
   DataTableFilterDrawer,
 } from "./components";
+import { TableCard } from "../application/table/table";
 
 interface DataTableProps<T> {
   config: DataTableConfig<T>;
@@ -32,6 +33,7 @@ export const DataTable = <T extends Record<string, any>>({
     metricCards,
     metricCardsSelectionMode = "radio",
     filters = [],
+    filterSubtitle,
     actions = [],
     bulkActions = [],
     enableSearch = true,
@@ -133,7 +135,7 @@ export const DataTable = <T extends Record<string, any>>({
       )}
 
       {/* Table */}
-      <div className="rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+      <TableCard.Root>
         <DataTableContent
           data={data?.data || []}
           columns={columns}
@@ -155,15 +157,11 @@ export const DataTable = <T extends Record<string, any>>({
         {data && data.meta && (
           <DataTablePagination
             currentPage={state.pagination.page}
-            pageSize={state.pagination.pageSize}
-            totalItems={data.meta.total}
             totalPages={data.meta.totalPages}
             onPageChange={(page) => setPagination(page)}
-            onPageSizeChange={(pageSize) => setPagination(1, pageSize)}
-            pageSizeOptions={pageSizeOptions}
           />
         )}
-      </div>
+      </TableCard.Root>
 
       {/* Bulk Actions */}
       {enableSelection && bulkActions.length > 0 && (
@@ -185,6 +183,7 @@ export const DataTable = <T extends Record<string, any>>({
           activeFilters={activeFilters}
           onApply={handleApplyFilters}
           onReset={handleResetFilters}
+          subtitle={filterSubtitle}
         />
       )}
     </div>

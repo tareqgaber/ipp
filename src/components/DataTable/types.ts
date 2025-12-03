@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { FC, ReactNode } from "react";
 
 /**
  * Table parameters for server-side operations
@@ -52,14 +52,20 @@ export type FilterFieldType =
 /**
  * Filter field configuration
  */
-export interface DataTableFilter {
-  type: FilterFieldType;
-  name: string;
-  label: string;
-  placeholder?: string;
-  options?: Array<{ value: string; label: string }>;
-  defaultValue?: any;
-}
+export type DataTableFilter =
+  | {
+      type: FilterFieldType;
+      name: string;
+      label: string;
+      placeholder?: string;
+      options?: Array<{ value: string; label: string }>;
+      defaultValue?: any;
+    }
+  | {
+      type: "separator";
+      name?: never;
+      label?: never;
+    };
 
 /**
  * Metric card configuration (acts as filter)
@@ -83,7 +89,7 @@ export interface DataTableMetricCard {
 export interface DataTableAction<T> {
   id: string;
   label: string;
-  icon?: ReactNode;
+  icon?: FC;
   onClick: (row: T) => void;
   variant?: "default" | "success" | "danger" | "warning";
   disabled?: (row: T) => boolean;
@@ -119,6 +125,7 @@ export interface DataTableConfig<T> {
 
   // Filters (optional)
   filters?: DataTableFilter[];
+  filterSubtitle?: string;
 
   // Actions
   actions?: DataTableAction<T>[];

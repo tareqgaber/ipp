@@ -8,6 +8,7 @@ interface RHFDateRangePickerProps {
   hint?: ReactNode;
   disabled?: boolean;
   className?: string;
+  hidePresets?: boolean;
 }
 
 export const RHFDateRangePicker = ({
@@ -16,6 +17,7 @@ export const RHFDateRangePicker = ({
   hint,
   disabled,
   className,
+  hidePresets = false,
 }: RHFDateRangePickerProps) => {
   const { control } = useFormContext();
 
@@ -35,6 +37,7 @@ export const RHFDateRangePicker = ({
               value={field.value}
               onChange={field.onChange}
               isDisabled={disabled}
+              hidePresets={hidePresets}
               onApply={() => {
                 // Optional: trigger form validation or other actions on apply
               }}

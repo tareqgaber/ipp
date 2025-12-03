@@ -5,9 +5,8 @@ import { AuthLayout } from "@/components/layout";
 import { LoginPage } from "@/pages/auth";
 import MainLayout from "@/components/layout/MainLayout/components/MainLayout";
 import { DashboardPage } from "@/pages/admin";
-import { PermitRequestsPage } from "@/pages/admin/PermitRequestsPage";
 import MyTasksPage from "@/pages/MyTasksPage";
-import PermitsPage from "@/pages/PermitsPage";
+import { PermitRequestsPage } from "@/pages/admin/PermitRequestsPage";
 import ExcavationPage from "@/pages/ExcavationPage";
 import ContractorsPage from "./ContractorsPage";
 import EncroachmentsPage from "@/pages/EncroachmentsPage";
@@ -49,8 +48,8 @@ export const router = createBrowserRouter([
         element: <MyTasksPage />,
       },
       {
-        path: "/permits",
-        element: <PermitsPage />,
+        path: "/permit-requests",
+        element: <PermitRequestsPage />,
       },
       {
         path: "/excavation",
@@ -79,14 +78,6 @@ export const router = createBrowserRouter([
       {
         path: "/settings",
         element: <SettingsPage />,
-      },
-      {
-        path: "/permit-requests",
-        element: (
-          <ProtectedRoute roles="admin">
-            <PermitRequestsPage />
-          </ProtectedRoute>
-        ),
       },
     ],
   },

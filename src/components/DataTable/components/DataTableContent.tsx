@@ -1,6 +1,8 @@
 import { Table } from "@/components/application/table/table";
 import { Dropdown } from "@/components/base/dropdown/dropdown";
 import type { DataTableColumn, DataTableAction } from "../types";
+import { useTranslation } from "@/hooks/useTranslation";
+import { useDirection } from "@/hooks/useDirection";
 
 interface DataTableContentProps<T> {
   data: T[];
@@ -26,19 +28,22 @@ export const DataTableContent = <T extends Record<string, any>>({
   isLoading,
   selectedIds,
   onToggleRow,
+  onToggleAll,
   onSort,
   sortBy,
   sortOrder,
   getRowId = (row) => row.id,
   enableSelection = true,
 }: DataTableContentProps<T>) => {
+  const { t } = useTranslation();
+  const { isRTL } = useDirection();
   if (isLoading) {
     return (
       <div className="flex h-64 items-center justify-center">
         <div className="text-center">
           <div className="mx-auto h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-primary-600 dark:border-gray-700 dark:border-t-primary-400" />
           <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-            Loading...
+            {t("components.dataTable.content.loading")}
           </p>
         </div>
       </div>
@@ -50,10 +55,10 @@ export const DataTableContent = <T extends Record<string, any>>({
       <div className="flex h-64 items-center justify-center">
         <div className="text-center">
           <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
-            No results found
+            {t("components.dataTable.content.noResultsTitle")}
           </p>
           <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            Try adjusting your search or filters
+            {t("components.dataTable.content.noResultsDescription")}
           </p>
         </div>
       </div>
@@ -62,12 +67,15 @@ export const DataTableContent = <T extends Record<string, any>>({
 
   return (
     <Table
-      aria-label="Data table"
+      aria-label={t("components.dataTable.content.tableLabel")}
       selectionMode={enableSelection ? "multiple" : "none"}
       selectionBehavior="toggle"
       selectedKeys={new Set(selectedIds)}
       onSelectionChange={(keys) => {
-        if (keys === "all") return;
+        if (keys === "all") {
+          onToggleAll();
+          return;
+        }
         const newIds = Array.from(keys) as string[];
         // Handle selection changes
         newIds.forEach((id) => {
@@ -110,7 +118,9 @@ export const DataTableContent = <T extends Record<string, any>>({
           <Table.Head
             key="actions"
             id="actions"
-            className="sticky right-0 bg-brand-50 shadow-lgs"
+            className={`sticky bg-brand-50 shadow-lgs ${
+              isRTL ? "left-0" : "right-0"
+            }`}
           />
         )}
       </Table.Header>
@@ -132,15 +142,17 @@ export const DataTableContent = <T extends Record<string, any>>({
               ))}
               {actions && actions.length > 0 && (
                 <Table.Cell
-                  className={`sticky right-0 bg-primary shadow-lg ${
-                    isSelected ? "bg-secondary" : ""
-                  }`}
+                  className={`sticky bg-primary w-21 before:content-[''] before:absolute before:top-0 before:bottom-[-1px] before:w-[25px] ${
+                    isRTL
+                      ? "left-0 before:right-[-25px] before:bg-[linear-gradient(90deg,rgba(0,0,0,0.015)_0%,rgba(0,0,0,0)_100%)]"
+                      : "right-0 before:left-[-25px] before:bg-[linear-gradient(270deg,rgba(0,0,0,0.015)_0%,rgba(0,0,0,0)_100%)]"
+                  } ${isSelected ? "bg-secondary" : ""}`}
                 >
                   <div className="flex justify-end">
                     <Dropdown.Root>
-                      <Dropdown.DotsButton />
+                      <Dropdown.DotsButton className="w-9 h-9 flex items-center justify-center text-brand-500 bg-brand-50 rounded-full" />
                       <Dropdown.Popover className="w-min">
-                        <Dropdown.Menu>
+                        <Dropdown.Menu className="w-[160px]">
                           {actions
                             .filter(
                               (action) => !action.hidden || !action.hidden(row)
@@ -156,14 +168,9 @@ export const DataTableContent = <T extends Record<string, any>>({
                                       ? action.disabled(row)
                                       : false
                                   }
-                                >
-                                  {IconComponent && (
-                                    <span className="mr-2">
-                                      {IconComponent}
-                                    </span>
-                                  )}
-                                  <span className="pr-4">{action.label}</span>
-                                </Dropdown.Item>
+                                  label={action.label}
+                                  // icon={IconComponent}
+                                ></Dropdown.Item>
                               );
                             })}
                         </Dropdown.Menu>

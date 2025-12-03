@@ -1,0 +1,20 @@
+{
+  "content": {
+    "loading": "Loading...",
+    "noResultsTitle": "No results found",
+    "noResultsDescription": "Try adjusting your search or filter to find what you're looking for",
+    "tableLabel": "Data table"
+  },
+  "filterDrawer": {
+    "title": "Filters",
+    "closeLabel": "Close filters",
+    "resetButton": "Reset",
+    "applyButton": "Apply",
+    "minPlaceholder": "Min",
+    "maxPlaceholder": "Max"
+  },
+  "bulkActions": {
+    "selectedCount": "{{count}} selected",
+    "clearSelection": "Clear selection"
+  }
+}
