@@ -136,7 +136,7 @@ export const DataTableContent = <T extends Record<string, any>>({
               ))}
               {actions && actions.length > 0 && (
                 <Table.Cell
-                  className={`sticky right-0 bg-primary before:content-[''] before:absolute before:left-[-25px] before:top-0 before:bottom-[-1px] before:w-[25px]  before:bg-[linear-gradient(270deg,rgba(0,0,0,0.015)_0%,rgba(0,0,0,0)_100%)] ${
+                  className={`sticky right-0 bg-primary w-21 before:content-[''] before:absolute before:left-[-25px] before:top-0 before:bottom-[-1px] before:w-[25px]  before:bg-[linear-gradient(270deg,rgba(0,0,0,0.015)_0%,rgba(0,0,0,0)_100%)] ${
                     isSelected ? "bg-secondary" : ""
                   }`}
                 >

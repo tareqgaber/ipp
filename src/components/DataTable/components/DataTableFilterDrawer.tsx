@@ -196,7 +196,10 @@ export const DataTableFilterDrawer = ({
                             label={filter.label}
                             name={filter.name}
                           >
-                            <RHFDateRangePicker name={filter.name} />
+                            <RHFDateRangePicker
+                              name={filter.name}
+                              hidePresets
+                            />
                           </FilterFieldWrapper>
                         );
 

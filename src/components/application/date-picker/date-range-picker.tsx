@@ -36,6 +36,8 @@ interface DateRangePickerProps extends AriaDateRangePickerProps<DateValue> {
   onApply?: () => void;
   /** The function to call when the cancel button is clicked. */
   onCancel?: () => void;
+  /** Whether to hide the preset shortcuts column. */
+  hidePresets?: boolean;
 }
 
 export const DateRangePicker = ({
@@ -44,6 +46,7 @@ export const DateRangePicker = ({
   onChange,
   onApply,
   onCancel,
+  hidePresets = false,
   ...props
 }: DateRangePickerProps) => {
   const { locale } = useLocale();
@@ -150,7 +153,7 @@ export const DateRangePicker = ({
         offset={8}
         className={({ isEntering, isExiting }) =>
           cx(
-            "origin-(--trigger-anchor-point) will-change-transform",
+            "pointer-events-auto origin-(--trigger-anchor-point) will-change-transform",
             isEntering &&
               "duration-150 ease-out animate-in fade-in placement-right:slide-in-from-left-0.5 placement-top:slide-in-from-bottom-0.5 placement-bottom:slide-in-from-top-0.5",
             isExiting &&
@@ -161,20 +164,22 @@ export const DateRangePicker = ({
         <AriaDialog className="flex rounded-2xl bg-primary shadow-xl ring ring-secondary_alt focus:outline-hidden">
           {({ close }) => (
             <>
-              <div className="hidden w-38 flex-col gap-0.5 border-r border-solid border-secondary p-3 lg:flex">
-                {Object.values(presets).map((preset) => (
-                  <RangePresetButton
-                    key={preset.label}
-                    value={preset.value}
-                    onClick={() => {
-                      setValue(preset.value);
-                      setFocusedValue(preset.value.start);
-                    }}
-                  >
-                    {preset.label}
-                  </RangePresetButton>
-                ))}
-              </div>
+              {!hidePresets && (
+                <div className="hidden w-38 flex-col gap-0.5 border-r border-solid border-secondary p-3 lg:flex">
+                  {Object.values(presets).map((preset) => (
+                    <RangePresetButton
+                      key={preset.label}
+                      value={preset.value}
+                      onClick={() => {
+                        setValue(preset.value);
+                        setFocusedValue(preset.value.start);
+                      }}
+                    >
+                      {preset.label}
+                    </RangePresetButton>
+                  ))}
+                </div>
+              )}
               <div className="flex flex-col">
                 <RangeCalendar
                   focusedValue={focusedValue}
