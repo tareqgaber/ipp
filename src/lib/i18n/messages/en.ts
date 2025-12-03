@@ -1,4 +1,5 @@
 import auth from "./en/auth.json";
+import layout from "./en/pages/layout.json";
 import common from "./en/common.json";
 import errors from "./en/errors.json";
 import messages from "./en/messages.json";
@@ -16,5 +17,6 @@ export default {
     dashboard,
     auth,
     permitRequests,
+    layout,
   },
 } as const;

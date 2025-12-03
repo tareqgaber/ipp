@@ -18,7 +18,7 @@ createRoot(document.getElementById("root")!).render(
       <ReduxProvider>
         <QueryProvider>
           <DirectionProvider>
-            <RouterProvider router={router}></RouterProvider>
+            <RouterProvider router={router}/>
             <Toaster position="top-right" />
           </DirectionProvider>
         </QueryProvider>
