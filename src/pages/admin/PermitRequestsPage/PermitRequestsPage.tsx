@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import { DataTable } from "@/components/DataTable";
+import { useTranslation } from "@/hooks/useTranslation";
 import {
   usePermitRequestsQuery,
   useApprovePermitRequest,
@@ -13,6 +14,7 @@ import type { PermitRequestListParams } from "@/api/types";
 
 export const PermitRequestsPage = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   // Table state - managed by DataTable internally, this is just for initial query
   const [tableParams] = useState<PermitRequestListParams>({
@@ -76,9 +78,10 @@ export const PermitRequestsPage = () => {
         handleView,
         handleBulkApprove,
         handleBulkDelete,
-        handleExport
+        handleExport,
+        t
       ),
-    []
+    [t]
   );
 
   return (

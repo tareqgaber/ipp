@@ -12,9 +12,6 @@ import { format } from "date-fns";
 import { Badge } from "@/components/base/badges/badges";
 import type { DataTableConfig } from "@/components/DataTable";
 import type { PermitRequest } from "@/api/types";
-import { useTranslation } from "@/hooks/useTranslation";
-
-const { t } = useTranslation();
 
 // Status badge component
 const StatusBadge = ({ status }: { status: PermitRequest["status"] }) => {
@@ -81,14 +78,17 @@ export const createPermitRequestsTableConfig = (
   onView: (id: string) => void,
   onBulkApprove: (ids: string[]) => void,
   onBulkDelete: (ids: string[]) => void,
-  onExport: (ids: string[]) => void
+  onExport: (ids: string[]) => void,
+  t?: (key: string, ...args: any[]) => string
 ): DataTableConfig<PermitRequest> => ({
   title: "Permit Requests",
   subtitle: "Manage and review all permit requests",
   enableSearch: true,
   enableFilters: true,
   enableSelection: true,
-  searchPlaceholder: t("pages.permitRequests.searchPlaceholder"),
+  searchPlaceholder:
+    t?.("pages.permitRequests.searchPlaceholder") ??
+    "Search permit requests...",
   defaultPageSize: 10,
 
   columns: [

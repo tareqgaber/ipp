@@ -103,13 +103,14 @@ export const DataTableContent = <T extends Record<string, any>>({
             label={col.header}
             allowsSorting={col.sortable}
             isRowHeader={col.id === columns[0]?.id}
+            className="bg-brand-50"
           />
         ))}
         {actions && actions.length > 0 && (
           <Table.Head
             key="actions"
             id="actions"
-            className="sticky right-0 bg-secondary shadow-[-4px_0_6px_-1px_rgba(0,0,0,0.1)]"
+            className="sticky right-0 bg-brand-50 shadow-lgs"
           />
         )}
       </Table.Header>
@@ -131,7 +132,7 @@ export const DataTableContent = <T extends Record<string, any>>({
               ))}
               {actions && actions.length > 0 && (
                 <Table.Cell
-                  className={`sticky right-0 bg-primary shadow-[-4px_0_6px_-1px_rgba(0,0,0,0.1)] ${
+                  className={`sticky right-0 bg-primary shadow-lg ${
                     isSelected ? "bg-secondary" : ""
                   }`}
                 >

@@ -46,7 +46,7 @@ export const DataTableMetricCards = ({
             }
             disabled={!isClickable}
             className={cn(
-              "group relative flex flex-col rounded-lg p-4 text-left transition-all shadow-xs",
+              "group relative flex flex-col rounded-lg p-4 text-left shadow-xs",
               isClickable
                 ? "cursor-pointer hover:shadow-xs"
                 : "cursor-default opacity-75",

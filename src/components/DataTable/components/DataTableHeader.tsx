@@ -1,8 +1,8 @@
-import { Search, SlidersHorizontal } from "lucide-react";
 import { Input } from "@/components/base/input/input";
 import { Button } from "@/components/base/buttons/button";
 import { Badge } from "@/components/base/badges/badges";
 import { useState, useEffect } from "react";
+import { FilterLines, SearchLg } from "@untitledui/icons";
 
 interface DataTableHeaderProps {
   title: string;
@@ -47,7 +47,7 @@ export const DataTableHeader = ({
     <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
       {/* Left: Title and Subtitle */}
       <div className="flex-1">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+        <h2 className="text-display-xs-r font-semibold text-gray-900 dark:text-gray-100">
           {title}
         </h2>
         {subtitle && (
@@ -65,8 +65,8 @@ export const DataTableHeader = ({
               value={localSearch}
               onChange={setLocalSearch}
               placeholder={searchPlaceholder || "Search..."}
-              icon={Search}
-              size="sm"
+              icon={SearchLg}
+              size="md"
             />
           </div>
         )}
@@ -75,16 +75,16 @@ export const DataTableHeader = ({
           <div className="relative">
             <Button
               color="secondary"
-              size="sm"
+              size="md"
               onClick={onFilterClick}
-              iconLeading={SlidersHorizontal}
+              iconLeading={FilterLines}
             >
               Filters
             </Button>
             {activeFilterCount > 0 && (
               <Badge
                 color="brand"
-                size="sm"
+                size="md"
                 className="absolute -right-2 -top-2"
               >
                 {activeFilterCount}
