@@ -2,15 +2,18 @@
   "searchPlaceholder": "Search by ID or External Reference Number",
   "title": "Permit Requests Management",
   "subtitle": "View and manage all permit requests",
-  "filterSubtitle": "Apply filters to narrow down permit requests",
+  "filterSubtitle": "Apply filters to table data.",
   "columns": {
-    "requestNumber": "Request #",
-    "applicant": "Applicant",
+    "id": "ID",
+    "assignedTo": "Assigned To",
+    "contractors": "Contractors",
     "type": "Type",
     "status": "Status",
-    "submitted": "Submitted",
-    "priority": "Priority",
-    "estimatedCost": "Est. Cost"
+    "conflict": "Conflict",
+    "rDate": "R. Date",
+    "vip": "VIP",
+    "assignee": "Assignee",
+    "countdown": "Countdown"
   },
   "status": {
     "pending": "Pending",
@@ -18,17 +21,10 @@
     "approved": "Approved",
     "rejected": "Rejected"
   },
-  "permitType": {
-    "construction": "Construction",
-    "renovation": "Renovation",
-    "demolition": "Demolition",
-    "other": "Other"
-  },
-  "priority": {
-    "low": "Low",
-    "medium": "Medium",
-    "high": "High",
-    "urgent": "Urgent"
+  "countdown": {
+    "onTrack": "On Track",
+    "atRisk": "At Risk",
+    "breached": "Breached"
   },
   "metricCards": {
     "totalOpenRequests": "Total Open Requests",
@@ -39,26 +35,41 @@
     "ofTotal": "of Total"
   },
   "filters": {
-    "applicantName": "Applicant Name",
-    "applicantNamePlaceholder": "Search by name...",
-    "permitType": "Permit Type",
-    "priority": "Priority",
-    "submittedDateRange": "Submitted Date Range",
-    "estimatedCostRange": "Estimated Cost Range"
+    "team": "Team",
+    "slaStatus": "SLA Status",
+    "conflict": "Conflict",
+    "dateRange": "Date Range"
+  },
+  "team": {
+    "teamA": "Team A",
+    "teamB": "Team B",
+    "teamC": "Team C"
+  },
+  "slaStatus": {
+    "onTrack": "On Track",
+    "atRisk": "At Risk",
+    "breached": "Breached"
+  },
+  "conflict": {
+    "none": "None",
+    "minor": "Minor",
+    "major": "Major"
   },
   "actions": {
-    "viewDetails": "View Details",
-    "approve": "Approve",
-    "reject": "Reject",
-    "edit": "Edit"
+    "assign": "Assign",
+    "viewHistory": "View History",
+    "viewRequest": "View Request"
   },
   "bulkActions": {
-    "approveSelected": "Approve Selected",
-    "deleteSelected": "Delete Selected",
-    "exportSelected": "Export Selected"
+    "assignSelected": "Assign Selected"
   },
-  "confirmations": {
-    "deleteMultiple": "Are you sure you want to delete {{count}} permit request(s)?",
-    "exportingMultiple": "Exporting {{count}} permit request(s)"
+  "assignModal": {
+    "title": "Assign",
+    "assigneeType": "Assignee Type",
+    "selectAssigneeType": "Select assignee type",
+    "assignTo": "Assign to",
+    "selectAssignTo": "Select assignee",
+    "assign": "Assign",
+    "cancel": "Cancel"
   }
 }
