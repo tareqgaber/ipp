@@ -14,6 +14,7 @@ import PerformancePage from "@/pages/PerformancePage";
 import EmpPerformancePage from "@/pages/EmpPerformancePage";
 import HelpCenterPage from "@/pages/HelpCenterPage";
 import SettingsPage from "@/pages/SettingsPage";
+// import PermitsPage from "@/pages/PermitsPage";
 
 export const router = createBrowserRouter([
   // Public routes (for guests only)
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
         path: "/permit-requests",
         element: <PermitRequestsPage />,
       },
+      // {
+      //   path: "/permit-requests",
+      //   element: <PermitsPage />,
+      // },
       {
         path: "/excavation",
         element: <ExcavationPage />,

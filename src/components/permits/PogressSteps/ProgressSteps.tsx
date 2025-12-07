@@ -1,6 +1,6 @@
 import DoneIcon from '@/assets/icons/DoneIcon';
 import NotYetIcon from '@/assets/icons/NotYetIcon';
-import React from 'react';
+;
 
 interface Step {
     id: number;

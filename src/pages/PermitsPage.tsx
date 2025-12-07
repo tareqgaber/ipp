@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import ProgressSteps from '../components/permits/PogressSteps/ProgressSteps';
 import ArrowLeft from '@/assets/icons/ArrowLeft';
 import { Link } from 'react-router';
@@ -10,7 +9,8 @@ import GISNetwork from '@/components/permits/GISNetwork/GISNetwork';
 const PermitsPage = () => {
     const { i18n } = useTranslation();
     const isRTL = i18n.language === 'ar';
-    const [currentStep, setCurrentStep] = useState(2);
+    // const [currentStep, setCurrentStep] = useState(2);
+    const currentStep = 2
 
     const steps = [
         { id: 1, label: 'Request created', description: '29/08/2025 ' },
