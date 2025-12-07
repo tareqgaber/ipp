@@ -30,10 +30,10 @@ const LoginForm = () => {
   return (
     <>
       <h1 className=" text-display-sm-r font-semibold text-center mb-3">
-        {t("pages.auth.login.title")}
+        {t("auth.login.title")}
       </h1>
       <p className="text-md-r text-tertiary-600 text-center mb-8">
-        {t("pages.auth.login.subtitle")}
+        {t("auth.login.subtitle")}
       </p>
       <FormProvider {...form}>
         <form
@@ -48,10 +48,7 @@ const LoginForm = () => {
             type="password"
           />
           <div className="flex w-full justify-between items-center py-1">
-            <RHFCheckbox
-              name="remember"
-              label={t("pages.auth.login.rememberMe")}
-            />
+            <RHFCheckbox name="remember" label={t("auth.login.rememberMe")} />
 
             <Link
               to="/forgot-password"
@@ -66,7 +63,7 @@ const LoginForm = () => {
             className=""
             isLoading={isPending}
           >
-            {t("pages.auth.login.submit")}
+            {t("auth.login.submit")}
           </Button>
         </form>
       </FormProvider>

@@ -1,5 +1,5 @@
 {
-  "searchPlaceholder": "البحث بالرقم التعريفي أو رقم المرجع الخارجي",
+  "searchPlaceholder": "بحث",
   "title": "طلبات التصاريح",
   "subtitle": "إدارة ومراجعة جميع طلبات التصاريح",
   "filterSubtitle": "تطبيق التصفية لتضييق نطاق طلبات التصاريح",
@@ -31,11 +31,12 @@
     "urgent": "عاجلة"
   },
   "metricCards": {
-    "allRequests": "جميع الطلبات",
-    "pending": "قيد الانتظار",
-    "underReview": "قيد المراجعة",
-    "approved": "موافق عليها",
-    "vsLastMonth": "مقارنة بالشهر الماضي"
+    "totalOpenRequests": "إجمالي الطلبات المفتوحة",
+    "vipRequests": "طلبات كبار الشخصيات",
+    "urgentRequests": "الطلبات العاجلة",
+    "normalRequests": "الطلبات العادية",
+    "completedRequests": "اكتمل اليوم",
+    "ofTotal": "من الإجمالي"
   },
   "filters": {
     "applicantName": "اسم مقدم الطلب",

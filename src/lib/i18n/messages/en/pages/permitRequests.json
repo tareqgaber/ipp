@@ -31,11 +31,12 @@
     "urgent": "Urgent"
   },
   "metricCards": {
-    "allRequests": "All Requests",
-    "pending": "Pending",
-    "underReview": "Under Review",
-    "approved": "Approved",
-    "vsLastMonth": "vs last month"
+    "totalOpenRequests": "Total Open Requests",
+    "vipRequests": "VIP Requests",
+    "urgentRequests": "Urgent Requests",
+    "normalRequests": "Normal Requests",
+    "completedRequests": "Completed",
+    "ofTotal": "of Total"
   },
   "filters": {
     "applicantName": "Applicant Name",

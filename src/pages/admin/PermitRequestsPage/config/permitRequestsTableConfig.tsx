@@ -215,48 +215,63 @@ export const createPermitRequestsTableConfig = (
     {
       id: "all",
       label:
-        t?.("pages.permitRequests.metricCards.allRequests") ?? "All Requests",
+        t?.("pages.permitRequests.metricCards.totalOpenRequests") ??
+        "All Requests",
       value: 248,
       filterKey: "status",
       filterValue: undefined,
       percentage: "+12%",
       subtext:
-        t?.("pages.permitRequests.metricCards.vsLastMonth") ?? "vs last month",
+        t?.("pages.permitRequests.metricCards.ofTotal") ?? "vs last month",
       directionIcon: "up",
       isActive: true, // This card will be active by default
     },
     {
       id: "pending",
-      label: t?.("pages.permitRequests.metricCards.pending") ?? "Pending",
+      label: t?.("pages.permitRequests.metricCards.vipRequests") ?? "Pending",
       value: 89,
       filterKey: "status",
       filterValue: "pending",
       percentage: "+8%",
       subtext:
-        t?.("pages.permitRequests.metricCards.vsLastMonth") ?? "vs last month",
+        t?.("pages.permitRequests.metricCards.ofTotal") ?? "vs last month",
       directionIcon: "up",
     },
     {
       id: "under_review",
       label:
-        t?.("pages.permitRequests.metricCards.underReview") ?? "Under Review",
+        t?.("pages.permitRequests.metricCards.urgentRequests") ??
+        "Under Review",
       value: 45,
       filterKey: "status",
       filterValue: "under_review",
       percentage: "-5%",
       subtext:
-        t?.("pages.permitRequests.metricCards.vsLastMonth") ?? "vs last month",
+        t?.("pages.permitRequests.metricCards.ofTotal") ?? "vs last month",
       directionIcon: "down",
     },
     {
       id: "approved",
-      label: t?.("pages.permitRequests.metricCards.approved") ?? "Approved",
+      label:
+        t?.("pages.permitRequests.metricCards.normalRequests") ?? "Approved",
       value: 98,
       filterKey: "status",
       filterValue: "approved",
       percentage: "+15%",
       subtext:
-        t?.("pages.permitRequests.metricCards.vsLastMonth") ?? "vs last month",
+        t?.("pages.permitRequests.metricCards.ofTotal") ?? "vs last month",
+      directionIcon: "up",
+    },
+    {
+      id: "approved",
+      label:
+        t?.("pages.permitRequests.metricCards.completedRequests") ?? "Approved",
+      value: 98,
+      filterKey: "status",
+      filterValue: "approved",
+      percentage: "+15%",
+      subtext:
+        t?.("pages.permitRequests.metricCards.ofTotal") ?? "vs last month",
       directionIcon: "up",
     },
   ],
