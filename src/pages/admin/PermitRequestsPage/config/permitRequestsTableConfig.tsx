@@ -1,8 +1,7 @@
-import { Eye, CheckCircle, XCircle, Edit, Trash, Download } from "lucide-react";
-import { format } from "date-fns";
 import { Badge } from "@/components/base/badges/badges";
 import type { DataTableConfig } from "@/components/DataTable";
 import type { PermitRequest } from "@/api/types";
+import { Plus } from "@untitledui/icons";
 
 // Status badge component
 const StatusBadge = ({
@@ -40,71 +39,30 @@ const StatusBadge = ({
   );
 };
 
-// Permit type badge component
-const PermitTypeBadge = ({
-  type,
+// Countdown badge component
+const CountdownBadge = ({
+  countdown,
   t,
 }: {
-  type: PermitRequest["permitType"];
+  countdown: PermitRequest["countdown"];
   t?: (key: string) => string;
 }) => {
-  const typeConfig = {
-    construction: {
-      color: "brand" as const,
-      label:
-        t?.("pages.permitRequests.permitType.construction") ?? "Construction",
+  const countdownConfig = {
+    on_track: {
+      color: "success" as const,
+      label: t?.("pages.permitRequests.countdown.onTrack") ?? "On Track",
     },
-    renovation: {
-      color: "blue" as const,
-      label: t?.("pages.permitRequests.permitType.renovation") ?? "Renovation",
-    },
-    demolition: {
-      color: "error" as const,
-      label: t?.("pages.permitRequests.permitType.demolition") ?? "Demolition",
-    },
-    other: {
-      color: "gray" as const,
-      label: t?.("pages.permitRequests.permitType.other") ?? "Other",
-    },
-  };
-
-  const config = typeConfig[type];
-
-  return (
-    <Badge color={config.color} size="sm">
-      {config.label}
-    </Badge>
-  );
-};
-
-// Priority badge component
-const PriorityBadge = ({
-  priority,
-  t,
-}: {
-  priority: PermitRequest["priority"];
-  t?: (key: string) => string;
-}) => {
-  const priorityConfig = {
-    low: {
-      color: "gray" as const,
-      label: t?.("pages.permitRequests.priority.low") ?? "Low",
-    },
-    medium: {
-      color: "blue" as const,
-      label: t?.("pages.permitRequests.priority.medium") ?? "Medium",
-    },
-    high: {
+    at_risk: {
       color: "warning" as const,
-      label: t?.("pages.permitRequests.priority.high") ?? "High",
+      label: t?.("pages.permitRequests.countdown.atRisk") ?? "At Risk",
     },
-    urgent: {
+    breached: {
       color: "error" as const,
-      label: t?.("pages.permitRequests.priority.urgent") ?? "Urgent",
+      label: t?.("pages.permitRequests.countdown.breached") ?? "Breached",
     },
   };
 
-  const config = priorityConfig[priority];
+  const config = countdownConfig[countdown];
 
   return (
     <Badge color={config.color} size="sm">
@@ -114,13 +72,10 @@ const PriorityBadge = ({
 };
 
 export const createPermitRequestsTableConfig = (
-  onApprove: (id: string) => void,
-  onReject: (id: string) => void,
-  onEdit: (id: string) => void,
-  onView: (id: string) => void,
-  onBulkApprove: (ids: string[]) => void,
-  onBulkDelete: (ids: string[]) => void,
-  onExport: (ids: string[]) => void,
+  onAssign: (id: string) => void,
+  onViewHistory: (id: string) => void,
+  onViewRequest: (id: string) => void,
+  onBulkAssign: (ids: string[]) => void,
   t?: (key: string, ...args: any[]) => string
 ): DataTableConfig<PermitRequest> => ({
   title: t?.("pages.permitRequests.title") ?? "Permit Requests",
@@ -140,38 +95,34 @@ export const createPermitRequestsTableConfig = (
 
   columns: [
     {
-      id: "requestNumber",
-      header: t?.("pages.permitRequests.columns.requestNumber") ?? "Request #",
-      accessorKey: "requestNumber",
+      id: "id",
+      header: t?.("pages.permitRequests.columns.id") ?? "ID",
+      accessorKey: "id",
       sortable: true,
       cell: (row) => (
         <span className="font-medium text-primary-600 dark:text-primary-400 text-nowrap">
-          {row.requestNumber}
+          {row.id}
         </span>
       ),
     },
     {
-      id: "applicantName",
-      header: t?.("pages.permitRequests.columns.applicant") ?? "Applicant",
-      accessorKey: "applicantName",
+      id: "assignedTo",
+      header: t?.("pages.permitRequests.columns.assignedTo") ?? "Assigned To",
+      accessorKey: "assignedTo",
       sortable: true,
-      cell: (row) => (
-        <div>
-          <div className="font-medium text-gray-900 dark:text-gray-100">
-            {row.applicantName}
-          </div>
-          <div className="text-sm text-gray-500 dark:text-gray-400">
-            {row.applicantEmail}
-          </div>
-        </div>
-      ),
     },
     {
-      id: "permitType",
-      header: t?.("pages.permitRequests.columns.type") ?? "Type",
-      accessorKey: "permitType",
+      id: "contractors",
+      header: t?.("pages.permitRequests.columns.contractors") ?? "Contractors",
+      accessorKey: "contractors",
       sortable: true,
-      cell: (row) => <PermitTypeBadge type={row.permitType} t={t} />,
+      className: "text-nowrap",
+    },
+    {
+      id: "type",
+      header: t?.("pages.permitRequests.columns.type") ?? "Type",
+      accessorKey: "type",
+      sortable: true,
     },
     {
       id: "status",
@@ -181,33 +132,37 @@ export const createPermitRequestsTableConfig = (
       cell: (row) => <StatusBadge status={row.status} t={t} />,
     },
     {
-      id: "submittedDate",
-      header: t?.("pages.permitRequests.columns.submitted") ?? "Submitted",
-      accessorKey: "submittedDate",
+      id: "conflict",
+      header: t?.("pages.permitRequests.columns.conflict") ?? "Conflict",
+      accessorKey: "conflict",
       sortable: true,
-      cell: (row) => (
-        <span className="text-sm text-gray-600 dark:text-gray-400 text-nowrap">
-          {format(new Date(row.submittedDate), "MMM dd, yyyy")}
-        </span>
-      ),
     },
     {
-      id: "priority",
-      header: t?.("pages.permitRequests.columns.priority") ?? "Priority",
-      accessorKey: "priority",
+      id: "rDate",
+      header: t?.("pages.permitRequests.columns.rDate") ?? "R. Date",
+      accessorKey: "rDate",
       sortable: true,
-      cell: (row) => <PriorityBadge priority={row.priority} t={t} />,
+      className: "text-nowrap",
     },
     {
-      id: "estimatedCost",
-      header: t?.("pages.permitRequests.columns.estimatedCost") ?? "Est. Cost",
-      accessorKey: "estimatedCost",
+      id: "vip",
+      header: t?.("pages.permitRequests.columns.vip") ?? "VIP",
+      accessorKey: "vip",
       sortable: true,
-      cell: (row) => (
-        <span className="font-medium text-gray-900 dark:text-gray-100">
-          ${row.estimatedCost.toLocaleString()}
-        </span>
-      ),
+    },
+    {
+      id: "assignee",
+      header: t?.("pages.permitRequests.columns.assignee") ?? "Assignee",
+      accessorKey: "assignee",
+      sortable: true,
+      className: "text-nowrap",
+    },
+    {
+      id: "countdown",
+      header: t?.("pages.permitRequests.columns.countdown") ?? "Countdown",
+      accessorKey: "countdown",
+      sortable: true,
+      cell: (row) => <CountdownBadge countdown={row.countdown} t={t} />,
     },
   ],
 
@@ -215,112 +170,125 @@ export const createPermitRequestsTableConfig = (
     {
       id: "all",
       label:
-        t?.("pages.permitRequests.metricCards.allRequests") ?? "All Requests",
+        t?.("pages.permitRequests.metricCards.totalOpenRequests") ??
+        "All Requests",
       value: 248,
       filterKey: "status",
       filterValue: undefined,
       percentage: "+12%",
       subtext:
-        t?.("pages.permitRequests.metricCards.vsLastMonth") ?? "vs last month",
+        t?.("pages.permitRequests.metricCards.ofTotal") ?? "vs last month",
       directionIcon: "up",
       isActive: true, // This card will be active by default
     },
     {
       id: "pending",
-      label: t?.("pages.permitRequests.metricCards.pending") ?? "Pending",
+      label: t?.("pages.permitRequests.metricCards.vipRequests") ?? "Pending",
       value: 89,
       filterKey: "status",
       filterValue: "pending",
       percentage: "+8%",
       subtext:
-        t?.("pages.permitRequests.metricCards.vsLastMonth") ?? "vs last month",
+        t?.("pages.permitRequests.metricCards.ofTotal") ?? "vs last month",
       directionIcon: "up",
     },
     {
       id: "under_review",
       label:
-        t?.("pages.permitRequests.metricCards.underReview") ?? "Under Review",
+        t?.("pages.permitRequests.metricCards.urgentRequests") ??
+        "Under Review",
       value: 45,
       filterKey: "status",
       filterValue: "under_review",
       percentage: "-5%",
       subtext:
-        t?.("pages.permitRequests.metricCards.vsLastMonth") ?? "vs last month",
+        t?.("pages.permitRequests.metricCards.ofTotal") ?? "vs last month",
       directionIcon: "down",
     },
     {
       id: "approved",
-      label: t?.("pages.permitRequests.metricCards.approved") ?? "Approved",
+      label:
+        t?.("pages.permitRequests.metricCards.normalRequests") ?? "Approved",
       value: 98,
       filterKey: "status",
       filterValue: "approved",
       percentage: "+15%",
       subtext:
-        t?.("pages.permitRequests.metricCards.vsLastMonth") ?? "vs last month",
+        t?.("pages.permitRequests.metricCards.ofTotal") ?? "vs last month",
+      directionIcon: "up",
+    },
+    {
+      id: "approved",
+      label:
+        t?.("pages.permitRequests.metricCards.completedRequests") ?? "Approved",
+      value: 98,
+      filterKey: "status",
+      filterValue: "approved",
+      percentage: "+15%",
+      subtext:
+        t?.("pages.permitRequests.metricCards.ofTotal") ?? "vs last month",
       directionIcon: "up",
     },
   ],
 
   filters: [
     {
-      type: "text",
-      name: "applicantName",
-      label:
-        t?.("pages.permitRequests.filters.applicantName") ?? "Applicant Name",
-      placeholder:
-        t?.("pages.permitRequests.filters.applicantNamePlaceholder") ??
-        "Search by name...",
+      type: "select",
+      name: "team",
+      label: t?.("pages.permitRequests.filters.team") ?? "Team",
+      options: [
+        {
+          value: "team_a",
+          label: t?.("pages.permitRequests.team.teamA") ?? "Team A",
+        },
+        {
+          value: "team_b",
+          label: t?.("pages.permitRequests.team.teamB") ?? "Team B",
+        },
+        {
+          value: "team_c",
+          label: t?.("pages.permitRequests.team.teamC") ?? "Team C",
+        },
+      ],
     },
     {
       type: "separator",
     },
     {
       type: "select",
-      name: "permitType",
-      label: t?.("pages.permitRequests.filters.permitType") ?? "Permit Type",
+      name: "slaStatus",
+      label: t?.("pages.permitRequests.filters.slaStatus") ?? "SLA Status",
       options: [
         {
-          value: "construction",
-          label:
-            t?.("pages.permitRequests.permitType.construction") ??
-            "Construction",
+          value: "on_track",
+          label: t?.("pages.permitRequests.slaStatus.onTrack") ?? "On Track",
         },
         {
-          value: "renovation",
-          label:
-            t?.("pages.permitRequests.permitType.renovation") ?? "Renovation",
+          value: "at_risk",
+          label: t?.("pages.permitRequests.slaStatus.atRisk") ?? "At Risk",
         },
         {
-          value: "demolition",
-          label:
-            t?.("pages.permitRequests.permitType.demolition") ?? "Demolition",
-        },
-        {
-          value: "other",
-          label: t?.("pages.permitRequests.permitType.other") ?? "Other",
+          value: "breached",
+          label: t?.("pages.permitRequests.slaStatus.breached") ?? "Breached",
         },
       ],
     },
     {
       type: "select",
-      name: "priority",
-      label: "Priority",
+      name: "conflict",
+      label: t?.("pages.permitRequests.filters.conflict") ?? "Conflict",
       options: [
         {
-          value: "low",
-          label: t?.("pages.permitRequests.priority.low") ?? "Low",
+          value: "none",
+          label: t?.("pages.permitRequests.conflict.none") ?? "None",
         },
         {
-          value: "medium",
-          label: t?.("pages.permitRequests.priority.medium") ?? "Medium",
+          value: "minor",
+          label: t?.("pages.permitRequests.conflict.minor") ?? "Minor",
         },
         {
-          value: "high",
-          label: t?.("pages.permitRequests.priority.high") ?? "High",
-        },
-        {
-          value: "urgent",
-          label: t?.("pages.permitRequests.priority.urgent") ?? "Urgent",
+          value: "major",
+          label: t?.("pages.permitRequests.conflict.major") ?? "Major",
         },
       ],
     },
@@ -329,77 +297,38 @@ export const createPermitRequestsTableConfig = (
     },
     {
       type: "dateRange",
-      name: "submittedDate",
-      label:
-        t?.("pages.permitRequests.filters.submittedDateRange") ??
-        "Submitted Date Range",
-    },
-    {
-      type: "numberRange",
-      name: "estimatedCost",
-      label:
-        t?.("pages.permitRequests.filters.estimatedCostRange") ??
-        "Estimated Cost Range",
+      name: "dateRange",
+      label: t?.("pages.permitRequests.filters.dateRange") ?? "Date Range",
     },
   ],
 
   actions: [
     {
-      id: "view",
-      label: t?.("pages.permitRequests.actions.viewDetails") ?? "View Details",
-      icon: <Eye className="h-4 w-4" />,
-      onClick: (row) => onView(row.id),
+      id: "assign",
+      label: t?.("pages.permitRequests.actions.assign") ?? "Assign",
+      onClick: (row) => onAssign(row.id),
     },
     {
-      id: "approve",
-      label: t?.("pages.permitRequests.actions.approve") ?? "Approve",
-      icon: <CheckCircle className="h-4 w-4" />,
-      onClick: (row) => onApprove(row.id),
-      variant: "success",
-      hidden: (row) => row.status === "approved",
+      id: "viewHistory",
+      label: t?.("pages.permitRequests.actions.viewHistory") ?? "View History",
+      onClick: (row) => onViewHistory(row.id),
     },
     {
-      id: "reject",
-      label: t?.("pages.permitRequests.actions.reject") ?? "Reject",
-      icon: <XCircle className="h-4 w-4" />,
-      onClick: (row) => onReject(row.id),
-      variant: "danger",
-      hidden: (row) => row.status === "rejected",
-    },
-    {
-      id: "edit",
-      label: t?.("pages.permitRequests.actions.edit") ?? "Edit",
-      icon: <Edit className="h-4 w-4" />,
-      onClick: (row) => onEdit(row.id),
+      id: "viewRequest",
+      label: t?.("pages.permitRequests.actions.viewRequest") ?? "View Request",
+      onClick: (row) => onViewRequest(row.id),
     },
   ],
 
   bulkActions: [
     {
-      id: "approve",
+      id: "assign",
       label:
-        t?.("pages.permitRequests.bulkActions.approveSelected") ??
-        "Approve Selected",
-      icon: <CheckCircle className="h-4 w-4" />,
-      onClick: (ids) => onBulkApprove(ids),
-      variant: "success",
-    },
-    {
-      id: "delete",
-      label:
-        t?.("pages.permitRequests.bulkActions.deleteSelected") ??
-        "Delete Selected",
-      icon: <Trash className="h-4 w-4" />,
-      onClick: (ids) => onBulkDelete(ids),
-      variant: "danger",
-    },
-    {
-      id: "export",
-      label:
-        t?.("pages.permitRequests.bulkActions.exportSelected") ??
-        "Export Selected",
-      icon: <Download className="h-4 w-4" />,
-      onClick: (ids) => onExport(ids),
+        t?.("pages.permitRequests.bulkActions.assignSelected") ??
+        "Assign Selected",
+      icon: <Plus className="h-4 w-4" />,
+      onClick: (ids) => onBulkAssign(ids),
+      variant: "primary",
     },
   ],
 

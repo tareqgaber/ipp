@@ -131,15 +131,21 @@ export const DataTableContent = <T extends Record<string, any>>({
 
           return (
             <Table.Row key={rowId} id={rowId}>
-              {columns.map((col) => (
-                <Table.Cell key={col.id}>
-                  {col.cell
-                    ? col.cell(row)
-                    : col.accessorKey
-                    ? String(row[col.accessorKey])
-                    : ""}
-                </Table.Cell>
-              ))}
+              {columns.map((col) => {
+                const cellClassName =
+                  typeof col.className === "function"
+                    ? col.className(row)
+                    : col.className;
+                return (
+                  <Table.Cell key={col.id} className={cellClassName}>
+                    {col.cell
+                      ? col.cell(row)
+                      : col.accessorKey
+                      ? String(row[col.accessorKey])
+                      : ""}
+                  </Table.Cell>
+                );
+              })}
               {actions && actions.length > 0 && (
                 <Table.Cell
                   className={`sticky bg-primary w-21 before:content-[''] before:absolute before:top-0 before:bottom-[-1px] before:w-[25px] ${
@@ -158,7 +164,6 @@ export const DataTableContent = <T extends Record<string, any>>({
                               (action) => !action.hidden || !action.hidden(row)
                             )
                             .map((action) => {
-                              const IconComponent = action.icon;
                               return (
                                 <Dropdown.Item
                                   key={action.id}

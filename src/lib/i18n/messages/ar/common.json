@@ -10,7 +10,7 @@
   "create": "إنشاء",
   "update": "تحديث",
   "search": "بحث",
-  "filter": "تصفية",
+  "filter": "تصنيف",
   "export": "تصدير",
   "import": "استيراد",
   "submit": "إرسال",
@@ -41,5 +41,7 @@
   "theme": "المظهر",
   "light": "فاتح",
   "dark": "داكن",
-  "system": "النظام"
+  "system": "النظام",
+  "uploaded": "تم الرفع",
+  "deleted": "تم الحذف"
 }

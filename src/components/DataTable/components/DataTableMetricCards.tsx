@@ -27,7 +27,7 @@ export const DataTableMetricCards = ({
         "grid-cols-1",
         "gap-4",
         "md:grid-cols-2",
-        "xl:grid-cols-4"
+        "xl:grid-cols-5"
       )}
     >
       {cards.map((card) => {
