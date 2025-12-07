@@ -1,4 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { queryKeys } from "../queryKeys";
 import type { PermitRequest, PermitRequestListParams } from "../types";
 import type { TableResponse } from "@/components/DataTable";
@@ -162,8 +163,10 @@ const generateMockPermitRequests = (
  * Fetch permit requests list with pagination, sorting, and filtering
  */
 export const usePermitRequestsQuery = (params: PermitRequestListParams) => {
+  const { i18n } = useTranslation();
+
   return useQuery({
-    queryKey: queryKeys.permitRequests.list(params),
+    queryKey: [...queryKeys.permitRequests.list(params), i18n.language],
     queryFn: async (): Promise<TableResponse<PermitRequest>> => {
       // Simulate API delay
       await new Promise((resolve) => setTimeout(resolve, 800));
