@@ -218,12 +218,13 @@ export const createPermitRequestsTableConfig = (
       directionIcon: "up",
     },
     {
-      id: "approved",
+      id: "completed",
       label:
-        t?.("pages.permitRequests.metricCards.completedRequests") ?? "Approved",
+        t?.("pages.permitRequests.metricCards.completedRequests") ??
+        "Completed",
       value: 98,
       filterKey: "status",
-      filterValue: "approved",
+      filterValue: "completed",
       percentage: "+15%",
       subtext:
         t?.("pages.permitRequests.metricCards.ofTotal") ?? "vs last month",
