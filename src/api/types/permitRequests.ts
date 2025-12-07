@@ -1,16 +1,14 @@
 export interface PermitRequest {
   id: string;
-  requestNumber: string;
-  applicantName: string;
-  applicantEmail: string;
-  permitType: "construction" | "renovation" | "demolition" | "other";
+  assignedTo: string;
+  contractors: string;
+  type: string;
   status: "pending" | "approved" | "rejected" | "under_review";
-  submittedDate: string;
-  reviewedDate?: string;
-  location: string;
-  estimatedCost: number;
-  priority: "low" | "medium" | "high" | "urgent";
-  description?: string;
+  conflict: string;
+  rDate: string;
+  vip: string;
+  assignee: string;
+  countdown: "on_track" | "at_risk" | "breached";
 }
 
 export interface PermitRequestListParams {
@@ -21,16 +19,12 @@ export interface PermitRequestListParams {
   search?: string;
   filters?: {
     status?: string;
-    permitType?: string;
-    priority?: string;
-    applicantName?: string;
-    submittedDate?: {
+    team?: string;
+    slaStatus?: string;
+    conflict?: string;
+    dateRange?: {
       from?: string;
       to?: string;
-    };
-    estimatedCost?: {
-      min?: number;
-      max?: number;
     };
   };
 }

@@ -36,6 +36,7 @@ export interface DataTableColumn<T> {
   cell?: (row: T) => ReactNode;
   width?: string;
   align?: "left" | "center" | "right";
+  className?: string | ((row: T) => string);
 }
 
 /**
@@ -104,7 +105,7 @@ export interface DataTableBulkAction<T> {
   label: string;
   icon?: ReactNode;
   onClick: (selectedIds: string[], selectedRows: T[]) => void;
-  variant?: "default" | "success" | "danger" | "warning";
+  variant?: "default" | "success" | "danger" | "warning" | "primary";
   confirmMessage?: string;
 }
 

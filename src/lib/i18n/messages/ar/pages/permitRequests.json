@@ -1,63 +1,75 @@
 {
-  "searchPlaceholder": "البحث بالرقم التعريفي أو رقم المرجع الخارجي",
+  "searchPlaceholder": "بحث",
   "title": "طلبات التصاريح",
   "subtitle": "إدارة ومراجعة جميع طلبات التصاريح",
-  "filterSubtitle": "تطبيق التصفية لتضييق نطاق طلبات التصاريح",
+  "filterSubtitle": "تطبيق عوامل التصفية على بيانات الجدول",
   "columns": {
-    "requestNumber": "رقم الطلب",
-    "applicant": "مقدم الطلب",
+    "id": "# طلب",
+    "assignedTo": "مُسند إلى",
+    "contractors": "المقاولون",
     "type": "النوع",
     "status": "الحالة",
-    "submitted": "تاريخ التقديم",
-    "priority": "الأولوية",
-    "estimatedCost": "التكلفة التقديرية"
+    "conflict": "تعارض",
+    "rDate": "تاريخ الطلب",
+    "vip": "VIP",
+    "assignee": "درجة المخاطرة",
+    "countdown": "العد التنازلي"
   },
   "status": {
-    "pending": "قيد الانتظار",
-    "underReview": "قيد المراجعة",
-    "approved": "موافق عليه",
+    "pending": "في انتظار المراجعة",
+    "underReview": "جديد",
+    "approved": "مكتمل",
     "rejected": "مرفوض"
   },
-  "permitType": {
-    "construction": "بناء",
-    "renovation": "تجديد",
-    "demolition": "هدم",
-    "other": "أخرى"
-  },
-  "priority": {
-    "low": "منخفضة",
-    "medium": "متوسطة",
-    "high": "عالية",
-    "urgent": "عاجلة"
+  "countdown": {
+    "onTrack": "في المسار",
+    "atRisk": "معرض للخطر",
+    "breached": "تم الإخلال"
   },
   "metricCards": {
-    "allRequests": "جميع الطلبات",
-    "pending": "قيد الانتظار",
-    "underReview": "قيد المراجعة",
-    "approved": "موافق عليها",
-    "vsLastMonth": "مقارنة بالشهر الماضي"
+    "totalOpenRequests": "إجمالي الطلبات المفتوحة",
+    "vipRequests": "طلبات كبار الشخصيات",
+    "urgentRequests": "الطلبات العاجلة",
+    "normalRequests": "الطلبات العادية",
+    "completedRequests": "اكتمل اليوم",
+    "ofTotal": "من الإجمالي"
   },
   "filters": {
-    "applicantName": "اسم مقدم الطلب",
-    "applicantNamePlaceholder": "البحث بالاسم...",
-    "permitType": "نوع التصريح",
-    "priority": "الأولوية",
-    "submittedDateRange": "نطاق تاريخ التقديم",
-    "estimatedCostRange": "نطاق التكلفة التقديرية"
+    "team": "الفريق",
+    "slaStatus": "حالة اتفاقية مستوى الخدمة",
+    "conflict": "التعارض",
+    "dateRange": "نطاق التاريخ"
+  },
+  "team": {
+    "teamA": "الفريق أ",
+    "teamB": "الفريق ب",
+    "teamC": "الفريق ج"
+  },
+  "slaStatus": {
+    "onTrack": "في المسار",
+    "atRisk": "معرض للخطر",
+    "breached": "تم الإخلال"
+  },
+  "conflict": {
+    "none": "لا يوجد",
+    "minor": "بسيط",
+    "major": "كبير"
   },
   "actions": {
-    "viewDetails": "عرض التفاصيل",
-    "approve": "موافقة",
-    "reject": "رفض",
-    "edit": "تعديل"
+    "assign": "تعيين",
+    "viewHistory": "عرض السجل",
+    "viewRequest": "عرض الطلب"
   },
   "bulkActions": {
-    "approveSelected": "الموافقة على المحدد",
-    "deleteSelected": "حذف المحدد",
-    "exportSelected": "تصدير المحدد"
+    "assignSelected": "تعيين المحدد"
   },
-  "confirmations": {
-    "deleteMultiple": "هل أنت متأكد من حذف {{count}} طلب تصريح؟",
-    "exportingMultiple": "تصدير {{count}} طلب تصريح"
+  "assignModal": {
+    "title": "تعيين",
+    "assigneeType": "نوع المكلف",
+    "selectAssigneeType": "اختر نوع المكلف",
+    "assignTo": "تعيين إلى",
+    "selectAssignTo": "اختر المكلف",
+    "assign": "تعيين",
+    "cancel": "إلغاء"
   }
 }
