@@ -53,7 +53,7 @@ const ProgressSteps: React.FC<ProgressStepsProps> = ({
         <div className={`w-full ${className}`}>
             <div className="relative">
                 {/* Progress line background */}
-                <div className="absolute top-3 sm:top-4 left-4 right-4 sm:left-6 sm:right-6 h-0.5 bg-gray-200 -translate-y-1/2">
+                <div className="absolute top-3 sm:top-4 left-4 right-4 sm:left-6 sm:right-2 h-0.5 bg-gray-200 -translate-y-1/2">
                     {/* Progress fill */}
                     <div
                         className="h-full bg-[#144892] transition-all duration-300 ease-in-out"
@@ -71,12 +71,10 @@ const ProgressSteps: React.FC<ProgressStepsProps> = ({
                         return (
                             <div key={step.id} className="flex flex-col items-center">
                                 <div className="relative">
-                                    {/* Step indicator - read only, no button */}
                                     <div className="flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8">
                                         {getStepIcon(step.id, status)}
                                     </div>
 
-                                    {/* Step label - hidden on mobile, shown on sm+ */}
                                     {showLabels && (
                                         <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 sm:mt-3 hidden sm:block">
                                             <span className="text-[10px] sm:text-xs font-medium whitespace-nowrap text-[#414651]">
@@ -86,9 +84,8 @@ const ProgressSteps: React.FC<ProgressStepsProps> = ({
                                     )}
                                 </div>
 
-                                {/* Step description - hidden on mobile, shown on sm+ */}
                                 {showDescriptions && step.description && (
-                                    <div className="mt-6 sm:mt-8 text-center max-w-[80px] sm:max-w-[120px] hidden sm:block">
+                                    <div className="mt-6 sm:mt-8 text-center max-w-20 sm:max-w-[120px] hidden sm:block">
                                         <span className="text-xs font-normal text-[#535862]">
                                             {step.description}
                                         </span>
