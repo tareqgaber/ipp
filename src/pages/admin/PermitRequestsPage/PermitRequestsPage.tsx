@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { DataTable } from "@/components/DataTable";
-import { useTranslation } from "@/hooks/useTranslation";
 import { usePermitRequestsQuery } from "@/api/queries";
 import { createPermitRequestsTableConfig } from "./config/permitRequestsTableConfig";
 import { AssignModal } from "./components/AssignModal";
@@ -98,7 +98,7 @@ export const PermitRequestsPage = () => {
   };
 
   const handleViewRequest = (id: string) => {
-    navigate(`/admin/permit-requests/${id}`);
+    navigate(`/permit-requests/${id}`);
   };
 
   const handleBulkAssign = (ids: string[]) => {
@@ -122,8 +122,7 @@ export const PermitRequestsPage = () => {
         handleAssign,
         handleViewHistory,
         handleViewRequest,
-        handleBulkAssign,
-        t
+        handleBulkAssign
       ),
     [t]
   );

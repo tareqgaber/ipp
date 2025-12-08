@@ -2,15 +2,12 @@ import { Badge } from "@/components/base/badges/badges";
 import type { DataTableConfig } from "@/components/DataTable";
 import type { PermitRequest } from "@/api/types";
 import { Plus } from "@untitledui/icons";
+import i18n from "@/lib/i18n";
+
+const t = i18n.t;
 
 // Status badge component
-const StatusBadge = ({
-  status,
-  t,
-}: {
-  status: PermitRequest["status"];
-  t?: (key: string) => string;
-}) => {
+const StatusBadge = ({ status }: { status: PermitRequest["status"] }) => {
   const statusConfig = {
     pending: {
       color: "warning" as const,
@@ -42,10 +39,8 @@ const StatusBadge = ({
 // Countdown badge component
 const CountdownBadge = ({
   countdown,
-  t,
 }: {
   countdown: PermitRequest["countdown"];
-  t?: (key: string) => string;
 }) => {
   const countdownConfig = {
     on_track: {
@@ -75,8 +70,7 @@ export const createPermitRequestsTableConfig = (
   onAssign: (id: string) => void,
   onViewHistory: (id: string) => void,
   onViewRequest: (id: string) => void,
-  onBulkAssign: (ids: string[]) => void,
-  t?: (key: string, ...args: any[]) => string
+  onBulkAssign: (ids: string[]) => void
 ): DataTableConfig<PermitRequest> => ({
   title: t?.("pages.permitRequests.title") ?? "Permit Requests",
   subtitle:
@@ -129,7 +123,7 @@ export const createPermitRequestsTableConfig = (
       header: t?.("pages.permitRequests.columns.status") ?? "Status",
       accessorKey: "status",
       sortable: true,
-      cell: (row) => <StatusBadge status={row.status} t={t} />,
+      cell: (row) => <StatusBadge status={row.status} />,
     },
     {
       id: "conflict",
@@ -162,7 +156,7 @@ export const createPermitRequestsTableConfig = (
       header: t?.("pages.permitRequests.columns.countdown") ?? "Countdown",
       accessorKey: "countdown",
       sortable: true,
-      cell: (row) => <CountdownBadge countdown={row.countdown} t={t} />,
+      cell: (row) => <CountdownBadge countdown={row.countdown} />,
     },
   ],
 

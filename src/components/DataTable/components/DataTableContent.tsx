@@ -111,7 +111,7 @@ export const DataTableContent = <T extends Record<string, any>>({
             label={col.header}
             allowsSorting={col.sortable}
             isRowHeader={col.id === columns[0]?.id}
-            className="bg-brand-50"
+            className="bg-brand-50 [&_span]:text-gray-900"
           />
         ))}
         {actions && actions.length > 0 && (
