@@ -1,6 +1,5 @@
 import DoneIcon from '@/assets/icons/DoneIcon';
 import NotYetIcon from '@/assets/icons/NotYetIcon';
-;
 
 interface Step {
     id: number;
@@ -32,6 +31,11 @@ const ProgressSteps: React.FC<ProgressStepsProps> = ({
     };
 
     const getStepIcon = (stepId: number, status: string) => {
+
+        if (stepId === 5 && currentStep >= 5) {
+            return <DoneIcon />;
+        }
+
         switch (status) {
             case 'completed':
                 return <DoneIcon />;
@@ -53,7 +57,7 @@ const ProgressSteps: React.FC<ProgressStepsProps> = ({
         <div className={`w-full ${className}`}>
             <div className="relative">
                 {/* Progress line background */}
-                <div className="absolute top-3 sm:top-4 left-4 right-4 sm:left-6 sm:right-2 h-0.5 bg-gray-200 -translate-y-1/2">
+                <div className="absolute top-3 sm:top-4 left-4 right-4 sm:left-6 sm:right-1 h-0.5 bg-gray-200 -translate-y-1/2">
                     {/* Progress fill */}
                     <div
                         className="h-full bg-[#144892] transition-all duration-300 ease-in-out"

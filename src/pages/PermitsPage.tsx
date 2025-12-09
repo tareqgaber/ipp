@@ -10,7 +10,7 @@ const PermitsPage = () => {
     const { i18n } = useTranslation();
     const isRTL = i18n.language === 'ar';
     // const [currentStep, setCurrentStep] = useState(2);
-    const currentStep = 2
+    const currentStep = 3
 
     const steps = [
         { id: 1, label: 'Request created', description: '29/08/2025 ' },
