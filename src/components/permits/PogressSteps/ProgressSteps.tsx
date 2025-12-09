@@ -29,7 +29,7 @@ const ProgressSteps: React.FC<ProgressStepsProps> = ({
     return "pending";
   };
 
-  const getStepIcon = (_stepId: number, status: string) => {
+  const getStepIcon = (stepId: number, status: string) => {
     switch (status) {
       case "completed":
         return <DoneIcon />;
@@ -63,7 +63,7 @@ const ProgressSteps: React.FC<ProgressStepsProps> = ({
 
         {/* Steps container */}
         <div className="relative flex justify-between px-2 sm:px-0">
-          {steps.map((step) => {
+          {steps.map((step, index) => {
             const status = getStepStatus(step.id);
 
             return (
