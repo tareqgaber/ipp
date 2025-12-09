@@ -1,5 +1,4 @@
 import secLogo from "@/assets/images/secLogo.png";
-import { Link } from "react-router";
 import { Outlet } from "react-router";
 import { motion } from "framer-motion";
 import { slideInVariants } from "@/lib/animations";
@@ -21,7 +20,6 @@ export function AuthLayout() {
           <motion.div
             initial="initial"
             animate="animate"
-            
             exit="exit"
             variants={slideInVariants("ltr")}
             className="w-full"
@@ -33,10 +31,10 @@ export function AuthLayout() {
       </div>
       <div className="py-6 lg:py-10 relative">
         <p className="text-display-xs-r font-semibold text-center text-white mb-3">
-          {t("pages.auth.thumb")}
+          {t("auth.thumb")}
         </p>
         <p className="text-md-r font-semibold text-center text-white">
-          {t("pages.auth.thumb_desc")}
+          {t("auth.thumb_desc")}
         </p>
       </div>
     </div>

@@ -55,6 +55,7 @@ export const DataTableBulkActions = <T,>({
           <div className="flex items-center gap-2">
             {actions.map((action) => {
               const colorMap = {
+                primary: "primary",
                 success: "primary",
                 danger: "primary-destructive",
                 warning: "secondary",
