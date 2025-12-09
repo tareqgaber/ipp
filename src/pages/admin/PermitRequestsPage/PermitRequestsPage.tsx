@@ -6,11 +6,11 @@ import { usePermitRequestsQuery } from "@/api/queries";
 import { createPermitRequestsTableConfig } from "./config/permitRequestsTableConfig";
 import { AssignModal } from "./components/AssignModal";
 import { HistoryDrawer } from "./components/HistoryDrawer";
-import type { HistoryLogItem } from "./components/HistoryDrawer/types";
+import type { HistoryLogItem as HistoryLogItemType } from "@/components/HistoryLogTimeline/types";
 import type { PermitRequestListParams } from "@/api/types";
 
 // Mock history data for demonstration
-const mockHistoryLogs: HistoryLogItem[] = [
+const mockHistoryLogs: HistoryLogItemType[] = [
   {
     id: "1",
     date: "02/09/2025",
