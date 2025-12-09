@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import Sidebar from './Sidebar';
-import ToggleIcon from '@/assets/icons/ToggleIcon';
-import { Outlet, useLocation } from 'react-router';
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import Sidebar from "./Sidebar";
+import ToggleIcon from "@/assets/icons/ToggleIcon";
+import { Outlet, useLocation } from "react-router";
 
 interface LayoutProps {
   children?: React.ReactNode;
 }
 
-const MainLayout: React.FC<LayoutProps> = ({ children }) => {
+const MainLayout: React.FC<LayoutProps> = () => {
   const { t, i18n } = useTranslation();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isRTL = i18n.language === 'ar';
+  const isRTL = i18n.language === "ar";
   const location = useLocation();
 
   const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'ar' : 'en';
+    const newLang = i18n.language === "en" ? "ar" : "en";
     i18n.changeLanguage(newLang);
     setIsMobileMenuOpen(false);
   };
@@ -35,39 +35,40 @@ const MainLayout: React.FC<LayoutProps> = ({ children }) => {
       { path: "/settings", title: t("pages.layout.Settings") },
     ];
 
-    const currentItem = menuItems.find(item => item.path === location.pathname);
+    const currentItem = menuItems.find(
+      (item) => item.path === location.pathname
+    );
     return currentItem ? currentItem.title : "Home";
   };
 
   const getSidebarTransform = () => {
     if (isMobileMenuOpen) {
-      return 'translate-x-0';
+      return "translate-x-0";
     }
-    
+
     if (isRTL) {
-      return 'translate-x-full lg:translate-x-0';
+      return "translate-x-full lg:translate-x-0";
     } else {
-      return '-translate-x-full lg:translate-x-0';
+      return "-translate-x-full lg:translate-x-0";
     }
   };
 
   return (
-    <div
-      className="flex h-screen bg-gray-50"
-      dir={isRTL ? 'rtl' : 'ltr'}
-    >
+    <div className="flex h-screen bg-gray-50" dir={isRTL ? "rtl" : "ltr"}>
       {isMobileMenuOpen && (
         <div
-        className="fixed inset-0 bg-black/20 z-40 lg:hidden"
+          className="fixed inset-0 bg-black/20 z-40 lg:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
 
-      <div className={`
+      <div
+        className={`
         fixed lg:relative z-50 h-full
         ${getSidebarTransform()}
         transition-transform duration-300 ease-in-out
-      `}>
+      `}
+      >
         <Sidebar
           collapsed={sidebarCollapsed}
           onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
@@ -78,24 +79,34 @@ const MainLayout: React.FC<LayoutProps> = ({ children }) => {
       <main className="flex-1 overflow-auto w-full">
         <header className="sticky top-0 z-10 bg-white border-b border-[#e6e6e6] px-4 lg:px-6 py-3">
           <div className="flex items-center justify-between">
-            <div className='flex items-center gap-4 lg:gap-6'>
+            <div className="flex items-center gap-4 lg:gap-6">
               <button
                 className="lg:hidden p-2"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 </svg>
               </button>
-              
+
               <div
-                className='cursor-pointer hidden lg:block'
+                className="cursor-pointer hidden lg:block"
                 onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
               >
                 <ToggleIcon />
               </div>
-              
-              <h1 className='text-[12px] text-[#414651] font-normal truncate max-w-[150px] sm:max-w-none'>
+
+              <h1 className="text-[12px] text-[#414651] font-normal truncate max-w-[150px] sm:max-w-none">
                 {getPageTitle()}
               </h1>
             </div>
@@ -105,7 +116,7 @@ const MainLayout: React.FC<LayoutProps> = ({ children }) => {
                 onClick={toggleLanguage}
                 className="px-3 py-1.5 lg:px-4 lg:py-2 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition-colors cursor-pointer text-sm lg:text-base whitespace-nowrap"
               >
-                {i18n.language === 'en' ? 'العربية' : 'English'}
+                {i18n.language === "en" ? "العربية" : "English"}
               </button>
             </div>
           </div>

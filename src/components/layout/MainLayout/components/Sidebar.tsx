@@ -23,7 +23,7 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({
   collapsed = false,
-  onToggle,
+  onToggle: _onToggle,
   onCloseMobile,
 }) => {
   const { t, i18n } = useTranslation();
@@ -111,8 +111,9 @@ const Sidebar: React.FC<SidebarProps> = ({
   return (
     <section className="relative h-screen overflow-hidden">
       <div
-        className={`absolute z-0 -bottom-40 ${isRTL ? "right-0" : "left-0"
-          } hidden lg:block`}
+        className={`absolute z-0 -bottom-40 ${
+          isRTL ? "right-0" : "left-0"
+        } hidden lg:block`}
       >
         <Flag className={isRTL ? "scale-x-[-1]" : ""} />
       </div>
@@ -120,10 +121,11 @@ const Sidebar: React.FC<SidebarProps> = ({
         className={`
                 flex flex-col justify-between h-screen bg-linear-to-b from-[#144892] to-[#06162C] 
                 py-6 px-4 transition-all duration-300 
-                ${collapsed
-            ? "w-16 lg:w-14 lg:px-2"
-            : "w-[250px] lg:w-[215px] lg:px-5"
-          } 
+                ${
+                  collapsed
+                    ? "w-16 lg:w-14 lg:px-2"
+                    : "w-[250px] lg:w-[215px] lg:px-5"
+                } 
                 rtl:border-l rtl:border-r-0
                 overflow-y-auto
             `}
@@ -153,14 +155,16 @@ const Sidebar: React.FC<SidebarProps> = ({
                   to={item.path}
                   className={`
                                         flex items-center gap-2 lg:gap-3 transition-colors p-2 lg:p-0
-                                        ${active
-                      ? "text-orange-500"
-                      : "text-white"
-                    } 
-                                        ${collapsed
-                      ? "justify-center"
-                      : "justify-start"
-                    }
+                                        ${
+                                          active
+                                            ? "text-orange-500"
+                                            : "text-white"
+                                        } 
+                                        ${
+                                          collapsed
+                                            ? "justify-center"
+                                            : "justify-start"
+                                        }
                                         rounded-lg lg:rounded-none 
                                     `}
                   title={collapsed ? item.label : undefined}
@@ -202,14 +206,16 @@ const Sidebar: React.FC<SidebarProps> = ({
                   to={item.path}
                   className={`
                                         flex items-center gap-2 lg:gap-3 transition-colors p-2 lg:p-0
-                                        ${active
-                      ? "text-orange-500"
-                      : "text-white"
-                    } 
-                                        ${collapsed
-                      ? "justify-center"
-                      : "justify-start"
-                    }
+                                        ${
+                                          active
+                                            ? "text-orange-500"
+                                            : "text-white"
+                                        } 
+                                        ${
+                                          collapsed
+                                            ? "justify-center"
+                                            : "justify-start"
+                                        }
                                         rounded-lg lg:rounded-none 
                                     `}
                   title={collapsed ? item.label : undefined}

@@ -40,14 +40,14 @@ export const DataTable = <T extends Record<string, any>>({
     enableFilters = true,
     enableSelection = true,
     defaultPageSize = 10,
-    pageSizeOptions = [10, 25, 50, 100],
+    pageSizeOptions: _pageSizeOptions = [10, 25, 50, 100],
     getRowId = (row) => row.id,
   } = config;
 
   // State management
   const {
     state,
-    tableParams,
+    tableParams: _tableParams,
     setPagination,
     toggleSort,
     setSearch,
@@ -67,7 +67,7 @@ export const DataTable = <T extends Record<string, any>>({
     selectedCount,
     isAllSelected,
     isSomeSelected,
-    isRowSelected,
+    isRowSelected: _isRowSelected,
     toggleRow,
     toggleAll,
     clearSelection,
