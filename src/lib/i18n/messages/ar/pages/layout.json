@@ -10,5 +10,19 @@
   "CityPerformance": "أداء المدينة",
   "EmpPerformance": "أداء الموظف",
   "Helpcenter": "مركز المساعدة",
-  "Settings": "الإعدادات"
+  "Settings": "الإعدادات",
+  "PendingReview": "في انتظار المراجعة",
+  "ProgressBar": {
+    "RequestCreated": "تم إنشاء الطلب",
+    "AutomatedReview": "المراجعة الآلية",
+    "AssignedToQueue": "تم تعيين الطلب إلي",
+    "ManualReview": "المراجعة اليدوية",
+    "RequestCompleted": "اكتمل الطلب"
+  },
+  "TabsBar":{
+    "ProjectDetails": "تفاصيل المشروع",
+    "GIS&Network": "نظم المعلومات الجغرافية والشبكة",
+    "Log": "السجل",
+    "Attachments": "المرفقات"
+  }
 }

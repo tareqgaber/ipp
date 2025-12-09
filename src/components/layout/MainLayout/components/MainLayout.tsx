@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import Sidebar from "./Sidebar";
 import ToggleIcon from "@/assets/icons/ToggleIcon";
 import { Outlet, useLocation } from "react-router";
+import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
 
 interface LayoutProps {
   children?: React.ReactNode;
@@ -21,11 +22,11 @@ const MainLayout: React.FC<LayoutProps> = () => {
     setIsMobileMenuOpen(false);
   };
 
-  const getPageTitle = () => {
+  const getBreadcrumb = () => {
     const menuItems = [
       { path: "/", title: t("pages.layout.Home") },
       { path: "/my-tasks", title: t("pages.layout.MyTasks") },
-      { path: "/permits", title: t("pages.layout.Permits") },
+      { path: "/permit-requests", title: t("pages.layout.Permits") },
       { path: "/excavation", title: t("pages.layout.Excavation") },
       { path: "/contractors", title: t("pages.layout.Contractors") },
       { path: "/encroachments", title: t("pages.layout.Encroachments") },
@@ -35,11 +36,33 @@ const MainLayout: React.FC<LayoutProps> = () => {
       { path: "/settings", title: t("pages.layout.Settings") },
     ];
 
-    const currentItem = menuItems.find(
-      (item) => item.path === location.pathname
+    const match = menuItems.find(
+      (item) =>
+        location.pathname === item.path ||
+        location.pathname.startsWith(item.path + "/")
     );
-    return currentItem ? currentItem.title : "Home";
+
+    const breadcrumb = [{ label: t("pages.layout.Home"), path: "/" }];
+
+    if (match) {
+      breadcrumb.push({
+        label: match.title,
+        path: match.path,
+      });
+    }
+
+    const parts = location.pathname.split("/").filter(Boolean);
+    if (parts.length > 1) {
+      const dynamicId = parts[1];
+      breadcrumb.push({
+        label: dynamicId,
+        path: "",
+      });
+    }
+
+    return breadcrumb;
   };
+
 
   const getSidebarTransform = () => {
     if (isMobileMenuOpen) {
@@ -106,11 +129,8 @@ const MainLayout: React.FC<LayoutProps> = () => {
                 <ToggleIcon />
               </div>
 
-              <h1 className="text-[12px] text-[#414651] font-normal truncate max-w-[150px] sm:max-w-none">
-                {getPageTitle()}
-              </h1>
+              <Breadcrumb paths={getBreadcrumb()} />
             </div>
-
             <div className="flex items-center space-x-4 rtl:space-x-reverse">
               <button
                 onClick={toggleLanguage}

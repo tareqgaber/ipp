@@ -10,5 +10,19 @@
   "CityPerformance": "City Performance",
   "EmpPerformance": "Emp. Performance",
   "Helpcenter": "Help center",
-  "Settings": "Settings"
+  "Settings": "Settings",
+  "PendingReview": "Pending Review",
+  "ProgressBar": {
+    "RequestCreated": "Request created",
+    "AutomatedReview": "Automated Review",
+    "AssignedToQueue": "Assigned to queue",
+    "ManualReview": "Manual Review",
+    "RequestCompleted": "Request completed"
+  },
+  "TabsBar": {
+    "ProjectDetails": "ProjectDetails",
+    "GIS&Network": "GIS & Network",
+    "Log": "Log",
+    "Attachments": "Attachments"
+  }
 }

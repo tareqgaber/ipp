@@ -3,7 +3,6 @@ import common from "./ar/common.json";
 import errors from "./ar/errors.json";
 import messages from "./ar/messages.json";
 import validation from "./ar/validation.json";
-import dataTable from "./ar/components/dataTable.json";
 import dashboard from "./ar/pages/dashboard.json";
 import layout from "./ar/pages/layout.json";
 import permitRequests from "./ar/pages/permitRequests.json";
@@ -14,9 +13,6 @@ const ar = {
   errors,
   messages,
   validation,
-  components: {
-    dataTable,
-  },
   pages: {
     dashboard,
     layout,

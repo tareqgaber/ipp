@@ -3,6 +3,7 @@ import { Table, TableCard } from "@/components/application/table/table";
 import { Toggle } from "@/components/base/toggle/toggle";
 import { useState } from "react";
 import DownloadIcon from "@/assets/icons/DownloadIcon";
+import { useTranslation } from "react-i18next";
 
 // Mock data
 const uploadedFiles = {
@@ -38,6 +39,7 @@ const uploadedFiles = {
 };
 
 export const AttachementsTable = () => {
+  const { t } = useTranslation()
   const [files, setFiles] = useState(uploadedFiles.items);
 
   const handleToggleIncluded = (id: number, value: boolean) => {
@@ -54,17 +56,17 @@ export const AttachementsTable = () => {
         <Table.Header>
           <Table.Head isRowHeader id="name" className="bg-[#E9F1FC]">
             <span className="text-[12px] text-[#181D27] font-semibold">
-              File name
+              {t("pages.permitRequests.Gis.FileName")}
             </span>
           </Table.Head>
           <Table.Head id="uploadedAt" className="bg-[#E9F1FC]">
             <span className="text-[12px] text-[#181D27] font-semibold">
-              Upload Date
+              {t("pages.permitRequests.Gis.UploadDate")}
             </span>
           </Table.Head>
           <Table.Head id="uploadedBy" className="bg-[#E9F1FC]">
             <span className="text-[12px] text-[#181D27] font-semibold">
-              Uploaded By
+              {t("pages.permitRequests.Gis.UploadedBy")}
             </span>
           </Table.Head>
           <Table.Head
@@ -72,12 +74,12 @@ export const AttachementsTable = () => {
             className="bg-[#E9F1FC] md:hidden xl:table-cell"
           >
             <span className="text-[12px] text-[#181D27] font-semibold">
-              Included in response
+              {t("pages.permitRequests.Gis.includedinresponse")}
             </span>
           </Table.Head>
           <Table.Head id="action" className="bg-[#E9F1FC]">
             <span className="text-[12px] text-[#181D27] font-semibold">
-              Action
+              {t("pages.permitRequests.Gis.Action")}
             </span>
           </Table.Head>
         </Table.Header>

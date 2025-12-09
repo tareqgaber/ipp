@@ -18,7 +18,7 @@ export interface ReadOnlyTableProps {
 }
 
 
-export const ReadOnlyTable: React.FC<ReadOnlyTableProps> = ({ data = [] }) => {
+export const ReadOnlyTable2: React.FC<ReadOnlyTableProps> = ({ data = [] }) => {
     const { t } = useTranslation()
     return (
         <TableCard.Root>
@@ -30,7 +30,7 @@ export const ReadOnlyTable: React.FC<ReadOnlyTableProps> = ({ data = [] }) => {
                         isRowHeader
                     >
                         <span className="text-[12px] text-[#181D27] font-semibold">
-                            {t("pages.permitRequests.Gis.Route")}
+                            {t("pages.permitRequests.ProjectDetails.Contractor")}
                         </span>
                     </Table.Head>
                     <Table.Head
@@ -38,7 +38,7 @@ export const ReadOnlyTable: React.FC<ReadOnlyTableProps> = ({ data = [] }) => {
                         className="bg-[#E9F1FC]"
                     >
                         <span className="text-[12px] text-[#181D27] font-semibold">
-                            {t("pages.permitRequests.Gis.StartPoint")}
+                            {t("pages.permitRequests.ProjectDetails.ProjectManagerName")}
                         </span>
                     </Table.Head>
                     <Table.Head
@@ -46,7 +46,7 @@ export const ReadOnlyTable: React.FC<ReadOnlyTableProps> = ({ data = [] }) => {
                         className="bg-[#E9F1FC]"
                     >
                         <span className="text-[12px] text-[#181D27] font-semibold">
-                            {t("pages.permitRequests.Gis.EndPoint")}
+                            {t("pages.permitRequests.ProjectDetails.IDNumber")}
                         </span>
                     </Table.Head>
                     <Table.Head
@@ -54,7 +54,7 @@ export const ReadOnlyTable: React.FC<ReadOnlyTableProps> = ({ data = [] }) => {
                         className="bg-[#E9F1FC]"
                     >
                         <span className="text-[12px] text-[#181D27] font-semibold">
-                            {t("pages.permitRequests.Gis.PathLength")}
+                            {t("pages.permitRequests.ProjectDetails.PrimaryNumber")}
                         </span>
                     </Table.Head>
                     <Table.Head
@@ -62,7 +62,7 @@ export const ReadOnlyTable: React.FC<ReadOnlyTableProps> = ({ data = [] }) => {
                         className="bg-[#E9F1FC]"
                     >
                         <span className="text-[12px] text-[#181D27] font-semibold">
-                            {t("pages.permitRequests.Gis.PathWidth")}
+                            {t("pages.permitRequests.ProjectDetails.SecondaryNumber")}
                         </span>
                     </Table.Head>
                     <Table.Head
@@ -70,7 +70,7 @@ export const ReadOnlyTable: React.FC<ReadOnlyTableProps> = ({ data = [] }) => {
                         className="bg-[#E9F1FC]"
                     >
                         <span className="text-[12px] text-[#181D27] font-semibold">
-                            {t("pages.permitRequests.Gis.ExcavationDepth")}
+                            {t("pages.permitRequests.ProjectDetails.EmailAddress")}
                         </span>
                     </Table.Head>
                 </Table.Header>

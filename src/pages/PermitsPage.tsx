@@ -11,6 +11,7 @@ import {
 } from "@/components/HistoryLogTimeline";
 import { ClockFastForward } from "@untitledui/icons";
 import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
+import Logs from "@/components/permits/Logs/Logs";
 
 // Mock data for logs - replace with actual API data
 const mockLogs: HistoryLogItem[] = [
@@ -55,17 +56,17 @@ const mockLogs: HistoryLogItem[] = [
 ];
 
 const PermitsPage = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "ar";
   // const [currentStep, setCurrentStep] = useState(2);
-  const currentStep = 2;
+  const currentStep = 5;
 
   const steps = [
-    { id: 1, label: "Request created", description: "29/08/2025 " },
-    { id: 2, label: "Automated Review", description: "02/09/2025" },
-    { id: 3, label: "Assigned to queue", description: "05/09/2025" },
-    { id: 4, label: "Manual Review", description: "-" },
-    { id: 5, label: "Request completed", description: "-" },
+    { id: 1, label: t("pages.layout.ProgressBar.RequestCreated"), description: "29/08/2025 " },
+    { id: 2, label: t("pages.layout.ProgressBar.AutomatedReview"), description: "02/09/2025" },
+    { id: 3, label: t("pages.layout.ProgressBar.AssignedToQueue"), description: "05/09/2025" },
+    { id: 4, label: t("pages.layout.ProgressBar.ManualReview"), description: "-" },
+    { id: 5, label: t("pages.layout.ProgressBar.RequestCompleted"), description: "-" },
   ];
 
   const completedSteps = steps
@@ -75,17 +76,17 @@ const PermitsPage = () => {
   const tabs = [
     {
       id: "details",
-      label: "Project Details",
+      label: t("pages.layout.TabsBar.ProjectDetails"),
       content: <ProjectDetails />,
     },
     {
       id: "gis",
-      label: "GIS & Network",
+      label: t("pages.layout.TabsBar.GIS&Network"),
       content: <GISNetwork />,
     },
     {
       id: "log",
-      label: "Log",
+      label: t("pages.layout.TabsBar.Log"),
       content: (
         <div className="bg-white rounded-lg">
           <div className="px-4 lg:px-6 py-5 flex justify-between items-center border-b border-[#E9EAEB]">
@@ -110,13 +111,8 @@ const PermitsPage = () => {
     },
     {
       id: "attachments",
-      label: "Attachments",
-      content: (
-        <div className="p-4 bg-white rounded-lg">
-          <h3 className="text-lg font-semibold mb-4">Attachments Content</h3>
-          <p>This is the Attachments tab content.</p>
-        </div>
-      ),
+      label: t("pages.layout.TabsBar.Attachments"),
+      content: <Logs />,
     },
   ];
 
@@ -126,7 +122,7 @@ const PermitsPage = () => {
   return (
     <section className="h-screen">
       <div className="flex gap-2 h-[62px] mb-3 items-center">
-        <Link to={"#"}>
+        <Link to={"/permit-requests"}>
           <ArrowLeft className={isRTL ? "rotate-180" : ""} />
         </Link>
         <h1 className="text-[24px] font-semibold text-[#144892]">
@@ -135,11 +131,11 @@ const PermitsPage = () => {
         <div className="bg-[#FFFAEB] py-0.5 pr-2 pl-1.5 border border-[#FEDF89] flex items-center gap-1 rounded-full">
           <div className="w-1.5 h-1.5 bg-[#F79009] rounded-full" />
           <h5 className="text-[12px] font-medium text-[#B54708]">
-            Pending Review
+            {t("pages.layout.PendingReview")}
           </h5>
         </div>
       </div>
-      <div className="max-w-[1105px] mx-auto mb-6">
+      <div className="">
         <ProgressSteps
           steps={steps}
           currentStep={currentStep}

@@ -8,13 +8,13 @@ import { DashboardPage } from "@/pages/admin";
 import MyTasksPage from "@/pages/MyTasksPage";
 import { PermitRequestsPage } from "@/pages/admin/PermitRequestsPage";
 import ExcavationPage from "@/pages/ExcavationPage";
-import ContractorsPage from "./ContractorsPage";
 import EncroachmentsPage from "@/pages/EncroachmentsPage";
 import PerformancePage from "@/pages/PerformancePage";
 import EmpPerformancePage from "@/pages/EmpPerformancePage";
 import HelpCenterPage from "@/pages/HelpCenterPage";
 import SettingsPage from "@/pages/SettingsPage";
 import PermitsPage from "@/pages/PermitsPage";
+import ContractorsPage from "@/pages/ContractorsPage";
 // import PermitsPage from "@/pages/PermitsPage";
 
 export const router = createBrowserRouter([
@@ -57,10 +57,6 @@ export const router = createBrowserRouter([
         path: "/permit-requests/:id",
         element: <PermitsPage />,
       },
-      // {
-      //   path: "/permit-requests",
-      //   element: <PermitsPage />,
-      // },
       {
         path: "/excavation",
         element: <ExcavationPage />,
