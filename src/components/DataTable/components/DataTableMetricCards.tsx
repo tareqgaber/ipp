@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { Badge } from "@/components/base/badges/badges";
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 import type { DataTableMetricCard } from "../types";
+import { motion } from "framer-motion";
 
 interface DataTableMetricCardsProps {
   cards: DataTableMetricCard[];
@@ -9,6 +10,8 @@ interface DataTableMetricCardsProps {
   activeCardIds?: string[]; // For checkbox mode
   selectionMode?: "radio" | "checkbox";
   onCardClick: (cardId: string, filterKey: string, filterValue: any) => void;
+  isLoading?: boolean;
+  skeletonCount?: number;
 }
 
 export const DataTableMetricCards = ({
@@ -17,7 +20,37 @@ export const DataTableMetricCards = ({
   activeCardIds = [],
   selectionMode = "radio",
   onCardClick,
+  isLoading = false,
+  skeletonCount = 5,
 }: DataTableMetricCardsProps) => {
+  if (isLoading) {
+    return (
+      <div
+        className={cn(
+          "grid",
+          "grid-cols-1",
+          "gap-4",
+          "md:grid-cols-2",
+          "xl:grid-cols-5"
+        )}
+      >
+        {Array.from({ length: skeletonCount }).map((_, index) => (
+          <div
+            key={`skeleton-${index}`}
+            className="flex flex-col rounded-lg bg-white p-4 shadow-xs dark:bg-gray-800"
+          >
+            {/* Title skeleton */}
+            <div className="mb-2 h-4 w-1/2 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
+            {/* Value skeleton */}
+            <div className="mb-2 h-10 w-3/4 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
+            {/* Badge skeleton */}
+            <div className="h-6 w-1/3 animate-pulse rounded-full bg-gray-200 dark:bg-gray-700" />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   if (!cards || cards.length === 0) return null;
 
   return (
@@ -30,7 +63,7 @@ export const DataTableMetricCards = ({
         "xl:grid-cols-5"
       )}
     >
-      {cards.map((card) => {
+      {cards.map((card, index) => {
         const isClickable = card.clickable !== false; // Default to true
         const isActive =
           selectionMode === "checkbox"
@@ -38,8 +71,15 @@ export const DataTableMetricCards = ({
             : activeCardId === card.id;
 
         return (
-          <button
+          <motion.button
             key={card.id}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.3,
+              delay: index * 0.05,
+              ease: "easeOut",
+            }}
             onClick={() =>
               isClickable &&
               onCardClick(card.id, card.filterKey, card.filterValue)
@@ -78,7 +118,7 @@ export const DataTableMetricCards = ({
                 </div>
               </Badge>
             )}
-          </button>
+          </motion.button>
         );
       })}
     </div>

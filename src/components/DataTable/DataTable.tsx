@@ -131,6 +131,8 @@ export const DataTable = <T extends Record<string, any>>({
           activeCardIds={state.activeMetricCards}
           selectionMode={metricCardsSelectionMode}
           onCardClick={handleMetricCardClick}
+          isLoading={isLoading}
+          skeletonCount={metricCards.length}
         />
       )}
 

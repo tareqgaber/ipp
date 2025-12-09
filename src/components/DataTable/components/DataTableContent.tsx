@@ -3,6 +3,7 @@ import { Dropdown } from "@/components/base/dropdown/dropdown";
 import type { DataTableColumn, DataTableAction } from "../types";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useDirection } from "@/hooks/useDirection";
+import { motion } from "framer-motion";
 
 interface DataTableContentProps<T> {
   data: T[];
@@ -37,16 +38,63 @@ export const DataTableContent = <T extends Record<string, any>>({
 }: DataTableContentProps<T>) => {
   const { t } = useTranslation();
   const { isRTL } = useDirection();
+  const skeletonRows = 5;
+
   if (isLoading) {
     return (
-      <div className="flex h-64 items-center justify-center">
-        <div className="text-center">
-          <div className="mx-auto h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-primary-600 dark:border-gray-700 dark:border-t-primary-400" />
-          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-            {t("components.dataTable.content.loading")}
-          </p>
-        </div>
-      </div>
+      <Table
+        aria-label={t("components.dataTable.content.tableLabel")}
+        selectionMode={enableSelection ? "multiple" : "none"}
+        selectionBehavior="toggle"
+      >
+        <Table.Header>
+          {columns.map((col) => (
+            <Table.Head
+              key={col.id}
+              id={col.id}
+              label={col.header}
+              allowsSorting={col.sortable}
+              isRowHeader={col.id === columns[0]?.id}
+              className="bg-brand-50 [&_span]:text-gray-900"
+            />
+          ))}
+          {actions && actions.length > 0 && (
+            <Table.Head
+              key="actions"
+              id="actions"
+              className={`sticky bg-brand-50 shadow-lgs ${
+                isRTL ? "left-0" : "right-0"
+              }`}
+            />
+          )}
+        </Table.Header>
+        <Table.Body
+          items={Array.from({ length: skeletonRows }, (_, i) => ({
+            id: `skeleton-${i}`,
+          }))}
+        >
+          {(item: { id: string }) => (
+            <Table.Row key={item.id} id={item.id}>
+              {columns.map((col) => (
+                <Table.Cell key={col.id}>
+                  <div className="h-4 w-3/4 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
+                </Table.Cell>
+              ))}
+              {actions && actions.length > 0 && (
+                <Table.Cell
+                  className={`sticky bg-primary w-21 ${
+                    isRTL ? "left-0" : "right-0"
+                  }`}
+                >
+                  <div className="flex justify-end">
+                    <div className="h-9 w-9 animate-pulse rounded-full bg-gray-200 dark:bg-gray-700" />
+                  </div>
+                </Table.Cell>
+              )}
+            </Table.Row>
+          )}
+        </Table.Body>
+      </Table>
     );
   }
 
@@ -111,7 +159,7 @@ export const DataTableContent = <T extends Record<string, any>>({
             label={col.header}
             allowsSorting={col.sortable}
             isRowHeader={col.id === columns[0]?.id}
-            className="bg-brand-50"
+            className="bg-brand-50 [&_span]:text-gray-900"
           />
         ))}
         {actions && actions.length > 0 && (
@@ -128,6 +176,7 @@ export const DataTableContent = <T extends Record<string, any>>({
         {(row: T) => {
           const rowId = getRowId(row);
           const isSelected = selectedIds.includes(rowId);
+          const rowIndex = data.findIndex((r) => getRowId(r) === rowId);
 
           return (
             <Table.Row key={rowId} id={rowId}>
@@ -138,11 +187,21 @@ export const DataTableContent = <T extends Record<string, any>>({
                     : col.className;
                 return (
                   <Table.Cell key={col.id} className={cellClassName}>
-                    {col.cell
-                      ? col.cell(row)
-                      : col.accessorKey
-                      ? String(row[col.accessorKey])
-                      : ""}
+                    <motion.div
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.3,
+                        delay: rowIndex * 0.05,
+                        ease: "easeOut",
+                      }}
+                    >
+                      {col.cell
+                        ? col.cell(row)
+                        : col.accessorKey
+                        ? String(row[col.accessorKey])
+                        : ""}
+                    </motion.div>
                   </Table.Cell>
                 );
               })}
@@ -154,7 +213,16 @@ export const DataTableContent = <T extends Record<string, any>>({
                       : "right-0 before:left-[-25px] before:bg-[linear-gradient(270deg,rgba(0,0,0,0.015)_0%,rgba(0,0,0,0)_100%)]"
                   } ${isSelected ? "bg-secondary" : ""}`}
                 >
-                  <div className="flex justify-end">
+                  <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: rowIndex * 0.05,
+                      ease: "easeOut",
+                    }}
+                    className="flex justify-end"
+                  >
                     <Dropdown.Root>
                       <Dropdown.DotsButton className="w-9 h-9 flex items-center justify-center text-brand-500 bg-brand-50 rounded-full" />
                       <Dropdown.Popover className="w-min">
@@ -181,7 +249,7 @@ export const DataTableContent = <T extends Record<string, any>>({
                         </Dropdown.Menu>
                       </Dropdown.Popover>
                     </Dropdown.Root>
-                  </div>
+                  </motion.div>
                 </Table.Cell>
               )}
             </Table.Row>
