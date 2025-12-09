@@ -3,6 +3,7 @@ import { Dropdown } from "@/components/base/dropdown/dropdown";
 import type { DataTableColumn, DataTableAction } from "../types";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useDirection } from "@/hooks/useDirection";
+import { motion } from "framer-motion";
 
 interface DataTableContentProps<T> {
   data: T[];
@@ -128,6 +129,7 @@ export const DataTableContent = <T extends Record<string, any>>({
         {(row: T) => {
           const rowId = getRowId(row);
           const isSelected = selectedIds.includes(rowId);
+          const rowIndex = data.findIndex((r) => getRowId(r) === rowId);
 
           return (
             <Table.Row key={rowId} id={rowId}>
@@ -138,11 +140,21 @@ export const DataTableContent = <T extends Record<string, any>>({
                     : col.className;
                 return (
                   <Table.Cell key={col.id} className={cellClassName}>
-                    {col.cell
-                      ? col.cell(row)
-                      : col.accessorKey
-                      ? String(row[col.accessorKey])
-                      : ""}
+                    <motion.div
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.3,
+                        delay: rowIndex * 0.05,
+                        ease: "easeOut",
+                      }}
+                    >
+                      {col.cell
+                        ? col.cell(row)
+                        : col.accessorKey
+                        ? String(row[col.accessorKey])
+                        : ""}
+                    </motion.div>
                   </Table.Cell>
                 );
               })}
@@ -154,7 +166,16 @@ export const DataTableContent = <T extends Record<string, any>>({
                       : "right-0 before:left-[-25px] before:bg-[linear-gradient(270deg,rgba(0,0,0,0.015)_0%,rgba(0,0,0,0)_100%)]"
                   } ${isSelected ? "bg-secondary" : ""}`}
                 >
-                  <div className="flex justify-end">
+                  <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: rowIndex * 0.05,
+                      ease: "easeOut",
+                    }}
+                    className="flex justify-end"
+                  >
                     <Dropdown.Root>
                       <Dropdown.DotsButton className="w-9 h-9 flex items-center justify-center text-brand-500 bg-brand-50 rounded-full" />
                       <Dropdown.Popover className="w-min">
@@ -181,7 +202,7 @@ export const DataTableContent = <T extends Record<string, any>>({
                         </Dropdown.Menu>
                       </Dropdown.Popover>
                     </Dropdown.Root>
-                  </div>
+                  </motion.div>
                 </Table.Cell>
               )}
             </Table.Row>

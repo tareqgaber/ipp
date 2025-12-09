@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { Badge } from "@/components/base/badges/badges";
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 import type { DataTableMetricCard } from "../types";
+import { motion } from "framer-motion";
 
 interface DataTableMetricCardsProps {
   cards: DataTableMetricCard[];
@@ -30,7 +31,7 @@ export const DataTableMetricCards = ({
         "xl:grid-cols-5"
       )}
     >
-      {cards.map((card) => {
+      {cards.map((card, index) => {
         const isClickable = card.clickable !== false; // Default to true
         const isActive =
           selectionMode === "checkbox"
@@ -38,8 +39,15 @@ export const DataTableMetricCards = ({
             : activeCardId === card.id;
 
         return (
-          <button
+          <motion.button
             key={card.id}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.3,
+              delay: index * 0.05,
+              ease: "easeOut",
+            }}
             onClick={() =>
               isClickable &&
               onCardClick(card.id, card.filterKey, card.filterValue)
@@ -78,7 +86,7 @@ export const DataTableMetricCards = ({
                 </div>
               </Badge>
             )}
-          </button>
+          </motion.button>
         );
       })}
     </div>
