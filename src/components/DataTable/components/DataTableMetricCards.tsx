@@ -10,6 +10,8 @@ interface DataTableMetricCardsProps {
   activeCardIds?: string[]; // For checkbox mode
   selectionMode?: "radio" | "checkbox";
   onCardClick: (cardId: string, filterKey: string, filterValue: any) => void;
+  isLoading?: boolean;
+  skeletonCount?: number;
 }
 
 export const DataTableMetricCards = ({
@@ -18,7 +20,37 @@ export const DataTableMetricCards = ({
   activeCardIds = [],
   selectionMode = "radio",
   onCardClick,
+  isLoading = false,
+  skeletonCount = 5,
 }: DataTableMetricCardsProps) => {
+  if (isLoading) {
+    return (
+      <div
+        className={cn(
+          "grid",
+          "grid-cols-1",
+          "gap-4",
+          "md:grid-cols-2",
+          "xl:grid-cols-5"
+        )}
+      >
+        {Array.from({ length: skeletonCount }).map((_, index) => (
+          <div
+            key={`skeleton-${index}`}
+            className="flex flex-col rounded-lg bg-white p-4 shadow-xs dark:bg-gray-800"
+          >
+            {/* Title skeleton */}
+            <div className="mb-2 h-4 w-1/2 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
+            {/* Value skeleton */}
+            <div className="mb-2 h-10 w-3/4 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
+            {/* Badge skeleton */}
+            <div className="h-6 w-1/3 animate-pulse rounded-full bg-gray-200 dark:bg-gray-700" />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   if (!cards || cards.length === 0) return null;
 
   return (

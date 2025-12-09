@@ -38,16 +38,63 @@ export const DataTableContent = <T extends Record<string, any>>({
 }: DataTableContentProps<T>) => {
   const { t } = useTranslation();
   const { isRTL } = useDirection();
+  const skeletonRows = 5;
+
   if (isLoading) {
     return (
-      <div className="flex h-64 items-center justify-center">
-        <div className="text-center">
-          <div className="mx-auto h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-primary-600 dark:border-gray-700 dark:border-t-primary-400" />
-          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-            {t("components.dataTable.content.loading")}
-          </p>
-        </div>
-      </div>
+      <Table
+        aria-label={t("components.dataTable.content.tableLabel")}
+        selectionMode={enableSelection ? "multiple" : "none"}
+        selectionBehavior="toggle"
+      >
+        <Table.Header>
+          {columns.map((col) => (
+            <Table.Head
+              key={col.id}
+              id={col.id}
+              label={col.header}
+              allowsSorting={col.sortable}
+              isRowHeader={col.id === columns[0]?.id}
+              className="bg-brand-50 [&_span]:text-gray-900"
+            />
+          ))}
+          {actions && actions.length > 0 && (
+            <Table.Head
+              key="actions"
+              id="actions"
+              className={`sticky bg-brand-50 shadow-lgs ${
+                isRTL ? "left-0" : "right-0"
+              }`}
+            />
+          )}
+        </Table.Header>
+        <Table.Body
+          items={Array.from({ length: skeletonRows }, (_, i) => ({
+            id: `skeleton-${i}`,
+          }))}
+        >
+          {(item: { id: string }) => (
+            <Table.Row key={item.id} id={item.id}>
+              {columns.map((col) => (
+                <Table.Cell key={col.id}>
+                  <div className="h-4 w-3/4 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
+                </Table.Cell>
+              ))}
+              {actions && actions.length > 0 && (
+                <Table.Cell
+                  className={`sticky bg-primary w-21 ${
+                    isRTL ? "left-0" : "right-0"
+                  }`}
+                >
+                  <div className="flex justify-end">
+                    <div className="h-9 w-9 animate-pulse rounded-full bg-gray-200 dark:bg-gray-700" />
+                  </div>
+                </Table.Cell>
+              )}
+            </Table.Row>
+          )}
+        </Table.Body>
+      </Table>
     );
   }
 
