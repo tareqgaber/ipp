@@ -1,8 +1,8 @@
-import { X } from "lucide-react";
-import * as Dialog from "@radix-ui/react-dialog";
-import { cn } from "@/lib/utils";
-import { HistoryTimeline } from "./HistoryTimeline";
-import type { HistoryLogItem } from "./types";
+import { Drawer } from "@/components/base/drawer";
+import {
+  HistoryLogTimeline,
+  type HistoryLogItem,
+} from "@/components/HistoryLogTimeline";
 
 interface HistoryDrawerProps {
   isOpen: boolean;
@@ -20,51 +20,13 @@ export const HistoryDrawer = ({
   // requestId can be used for fetching history from API
   void _requestId;
   return (
-    <Dialog.Root open={isOpen} onOpenChange={onClose}>
-      <Dialog.Portal>
-        {/* Overlay */}
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
-
-        {/* Content */}
-        <Dialog.Content
-          className={cn(
-            "fixed right-0 top-0 z-50 h-full w-full max-w-md",
-            "bg-white shadow-xl dark:bg-gray-900",
-            "data-[state=open]:animate-in data-[state=closed]:animate-out",
-            "data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right",
-            "duration-300"
-          )}
-        >
-          <div className="flex h-full flex-col">
-            {/* Header */}
-            <div className="px-6 pt-6">
-              <div className="flex items-center justify-between">
-                <div className="flex flex-col gap-1">
-                  <Dialog.Title className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                    Log History
-                  </Dialog.Title>
-                  <Dialog.Description className="text-sm text-gray-600 dark:text-gray-400">
-                    Track all system activities in one place.
-                  </Dialog.Description>
-                </div>
-                <Dialog.Close asChild>
-                  <button
-                    className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-800 dark:hover:text-gray-300"
-                    aria-label="Close"
-                  >
-                    <X className="h-5 w-5" />
-                  </button>
-                </Dialog.Close>
-              </div>
-            </div>
-
-            {/* Body */}
-            <div className="flex-1 overflow-y-auto p-6">
-              <HistoryTimeline logs={logs} />
-            </div>
-          </div>
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
+    <Drawer
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Log History"
+      description="Track all system activities in one place."
+    >
+      <HistoryLogTimeline logs={logs} />
+    </Drawer>
   );
 };
