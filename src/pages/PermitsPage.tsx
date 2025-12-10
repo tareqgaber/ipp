@@ -11,7 +11,7 @@ import {
 } from "@/components/HistoryLogTimeline";
 import { ClockFastForward } from "@untitledui/icons";
 import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
-import Logs from "@/components/permits/Logs/Logs";
+import Attachements from "@/components/permits/Attachements/Attachements";
 
 // Mock data for logs - replace with actual API data
 const mockLogs: HistoryLogItem[] = [
@@ -112,7 +112,7 @@ const PermitsPage = () => {
     {
       id: "attachments",
       label: t("pages.layout.TabsBar.Attachments"),
-      content: <Logs />,
+      content: <Attachements />,
     },
   ];
 
